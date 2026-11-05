@@ -51,7 +51,7 @@ figure.
 ```python
 from figure_tools import Waterfall
 
-w = Waterfall.from_table("examples/tables/waterfall.csv", profile="paper",
+w = Waterfall.from_table("examples/tables/waterfall.csv",
                          title="Materials explain most of the 2024 cost increase")
 w.save("out/bridge")                      # out/bridge.pdf, .svg, .png
 ```
@@ -225,8 +225,8 @@ s.save_html("out/grant.html")
   smallest step stays readable.
 - matplotlib reads `$...$` as math and italicizes the text in between. A bare
   `$` in a title or label raises an error. Write `\$` instead.
-- PDFs embed TrueType text (not Type 3) and SVGs keep live text, so a copy
-  editor can fix a typo without redrawing. A missing glyph raises an error.
+- PDFs embed TrueType text (not Type 3) and SVGs keep live text. A missing
+  glyph raises an error.
 
 ## Limits
 

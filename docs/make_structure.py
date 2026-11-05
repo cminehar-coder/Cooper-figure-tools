@@ -79,7 +79,7 @@ def structure(out_stem: Path):
              for i in dict.fromkeys([f1["source"], f1["target"]]) if i in nodes],
             [15, 13, 20], keys={"route", "id"})
     m = mats[f1["material_id"]]
-    Mt = Box(ax, 50, 35, "materials   registry", ["id", "name"],
+    Mt = Box(ax, 53, 35, "materials   registry", ["id", "name"],
              [[m["id"], m.get("name")]], [15, 20], keys={"id"})
     ids = [s.strip() for s in f1["source_id"].split(";")][:2]
     R = Box(ax, 68, 16, "references   library", ["id", "type", "title", "year"],
@@ -104,8 +104,8 @@ def structure(out_stem: Path):
     label(14, (out + N.top) / 2, "flows.source, flows.target = nodes.id")
     arrow((F.colx["material_id"], out), (Mt.colx["id"], Mt.top))
     label(Mt.colx["id"] + 2, (out + Mt.top) / 2 + 2.6, "flows.material_id = materials.id")
-    arrow((F.colx["source_id"] - 20, out), (R.colx["id"] + 4, R.top))
-    label(R.colx["id"] + 6, (out + R.top) / 2 - 1, "flows.source_id = references.id")
+    arrow((F.colx["source_id"] + 14, out), (R.colx["id"] + 4, R.top))
+    label(R.colx["id"] + 14, R.top + 3.2, "flows.source_id = references.id")
     arrow((Q.x + Q.w, Q.top - RH * 2.5), (R.x, R.top - RH * 2.5))
     label((Q.x + Q.w + R.x) / 2, Q.top - RH * 2.5 + 1.6, "relationships.source_id = references.id",
           ha="center")

@@ -36,7 +36,7 @@ MM_PER_IN = 25.4
 
 
 class Waterfall:
-    def __init__(self, profile: str = "deck", height_mm: float | None = None,
+    def __init__(self, profile: str = "paper", height_mm: float | None = None,
                  width_mm: float | None = None, zoom: bool = False):
         """zoom=True crops the value axis to the bars instead of including zero.
 
@@ -66,7 +66,7 @@ class Waterfall:
 
     # ---------------- declaration ----------------
     @classmethod
-    def from_table(cls, table, sheet=None, profile: str = "deck", title: str | None = None,
+    def from_table(cls, table, sheet=None, profile: str = "paper", title: str | None = None,
                    ylabel: str | None = None, **kw) -> "Waterfall":
         """Build a waterfall from a table.
 
