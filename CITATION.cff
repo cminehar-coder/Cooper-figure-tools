@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "figure-tools: waterfall and Sankey figures from plain Python data"
+type: software
+version: 0.1.0
+license: MIT
+repository-code: "https://github.com/cminehar-coder/figure-tools"
+abstract: >-
+  Python tools that turn a list of numbers into publication-style waterfall
+  and Sankey figures (PDF, SVG, PNG), with paper and slide styles, plus a
+  renderer for interactive material-flow Sankey diagrams with a bibliography.
+keywords:
+  - sankey
+  - waterfall
+  - figures
+  - matplotlib
+  - material flows
+authors:
+  - family-names: Minehart
+    given-names: Cooper
+    affiliation: "Carnegie Mellon University"

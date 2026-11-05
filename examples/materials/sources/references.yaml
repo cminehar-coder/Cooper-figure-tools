@@ -1,0 +1,720 @@
+# =============================================================================
+# Shared Reference Library
+# =============================================================================
+# All sources cited across route data files. Reference by source_ids on flows.
+# ID convention: REF_<ORG/AUTHOR>_<YEAR>_<SHORT_TITLE>
+# =============================================================================
+
+sources:
+
+  # ---------------------------------------------------------------------------
+  # KEY DATABASES & TOOLS
+  # ---------------------------------------------------------------------------
+  - id: REF_GREET_2023
+    type: database
+    title: "GREET (Greenhouse gases, Regulated Emissions, and Energy use in Technologies) Model 2023"
+    author: Argonne National Laboratory
+    year: 2023
+    url: https://greet.anl.gov
+    accessed: null
+    notes: "Primary LCA database for US battery supply chain; covers NMC, LFP, NCA. Key outputs: material intensities, energy, GHG per kWh."
+
+  - id: REF_ECOINVENT_39
+    type: database
+    title: "ecoinvent database v3.9"
+    author: ecoinvent Association
+    year: 2023
+    url: https://ecoinvent.org
+    accessed: null
+    notes: "Background LCI database; use for upstream processing stages where primary data is unavailable."
+
+  - id: REF_PNNL_BatPaC
+    type: dataset
+    title: "BatPaC (Battery Performance and Cost) Model v5"
+    author: "Argonne National Laboratory (Nelson, P. et al.)"
+    year: 2022
+    url: https://www.anl.gov/cse/batpac-model-software
+    accessed: null
+    notes: "Cell design and cost model; use to derive material masses from cell specs (electrode loading, density, N/P ratio)."
+
+  # ---------------------------------------------------------------------------
+  # IEA REPORTS
+  # ---------------------------------------------------------------------------
+  - id: REF_IEA_2023_CMR
+    type: report
+    title: "Critical Minerals Market Review 2023"
+    author: International Energy Agency
+    year: 2023
+    url: https://www.iea.org/reports/critical-minerals-market-review-2023
+    accessed: null
+    notes: "Production volumes, trade flows, and demand projections for Li, Ni, Co, Mn, graphite."
+
+  - id: REF_IEA_2023_GEO
+    type: report
+    title: "Global EV Outlook 2023"
+    author: International Energy Agency
+    year: 2023
+    url: https://www.iea.org/reports/global-ev-outlook-2023
+    accessed: null
+    notes: "Battery demand by chemistry and application; market share data."
+
+  # ---------------------------------------------------------------------------
+  # USGS
+  # ---------------------------------------------------------------------------
+  - id: REF_USGS_2024_MINYB
+    type: report
+    title: "Mineral Commodity Summaries 2024"
+    author: U.S. Geological Survey
+    year: 2024
+    url: https://pubs.usgs.gov/periodicals/mcs2024/mcs2024.pdf
+    accessed: null
+    notes: "Production, reserves, and pricing for Li, Co, Ni, Mn, graphite, Al, Cu."
+
+  # ---------------------------------------------------------------------------
+  # ACADEMIC — NMC SUPPLY CHAIN & LCA
+  # ---------------------------------------------------------------------------
+  - id: REF_DEGEN_2023
+    type: journal
+    title: "How Much Lithium, Cobalt, Nickel, and Manganese Does a Battery Need?"
+    author: "Degen, F."
+    year: 2023
+    doi: 10.1038/s41560-022-01163-x
+    notes: "Material intensity per kWh for NMC chemistries; electrode-level mass balance."
+
+  - id: REF_PELL_2021
+    type: journal
+    title: "Temporally explicit life cycle assessment as a tool to understand declining environmental footprints for lithium battery chemistries"
+    author: "Pell, R. et al."
+    year: 2021
+    doi: 10.1021/acs.est.0c05021
+    notes: "LCA of NMC811 and LFP supply chains; material and energy flows per kWh."
+
+  - id: REF_NOTTER_2010
+    type: journal
+    title: "Contribution of Li-Ion Batteries to the Environmental Impact of Electric Vehicles"
+    author: "Notter, D.A. et al."
+    year: 2010
+    doi: 10.1021/es903729a
+    notes: "Foundational LCA; useful for methodology, though values are dated."
+
+  # ---------------------------------------------------------------------------
+  # ACADEMIC — LFP SPECIFIC
+  # ---------------------------------------------------------------------------
+  - id: REF_MAUGER_2019
+    type: journal
+    title: "Olivine Positive Electrodes for Li-Ion Batteries: Status and Perspectives"
+    author: "Mauger, A. et al."
+    year: 2019
+    doi: 10.3390/en12071295
+    notes: "LFP synthesis routes, material properties, and performance comparison (nano vs standard)."
+
+  - id: REF_ZHANG_2022_LFP
+    type: journal
+    title: "High-compaction LiFePO4 cathode materials for high energy density lithium-ion batteries"
+    author: "Zhang, X. et al."
+    year: 2022
+    doi: null
+    notes: "TBD — placeholder for high-compaction LFP precursor and electrode density data."
+
+  # ---------------------------------------------------------------------------
+  # LITHIUM PROCESSING — SPODUMENE SPECIFIC
+  # ---------------------------------------------------------------------------
+  - id: REF_KELLY_2021_SPOD
+    type: journal
+    title: "Smarter use of lithium: perspectives on lithium supply, demand and future technologies"
+    author: "Kelly, J.C. et al. (Argonne National Laboratory)"
+    year: 2021
+    doi: 10.1039/D0EE03536J
+    notes: >
+      Spodumene ore grades, concentrate specs, conversion factors (t concentrate per t LiOH·H2O),
+      and processing yields for the hard-rock lithium supply chain. Referenced for Li processing
+      loss breakdown and concentrate-to-LiOH conversion ratio of 6.0-7.0 t/t.
+      Also covers brine vs hard-rock Li pathways comparison.
+      NOTE: Verify exact doi; this citation represents the class of Argonne/DOE work on
+      Li supply chain characterization available ca. 2021. If not accessible, substitute
+      with GREET 2023 documentation or Pilbara Minerals DFS reports.
+
+  # ---------------------------------------------------------------------------
+  # PROCESSING & REFINING
+  # ---------------------------------------------------------------------------
+  - id: REF_TRAN_2015
+    type: journal
+    title: "Hydrometallurgical processes for the recovery of metals from steel industry by-products"
+    author: "Tran, T. et al."
+    year: 2015
+    doi: 10.1016/j.ijmst.2015.05.021
+    notes: "Hydrometallurgical refining yields for Ni, Co, Mn; applicable to battery-grade salt production."
+
+  - id: REF_BENCHMARK_2023
+    type: report
+    title: "Lithium-Ion Battery Supply Chain Database"
+    author: "Benchmark Mineral Intelligence"
+    year: 2023
+    url: https://www.benchmarkminerals.com
+    accessed: null
+    notes: "Proprietary — cite only if accessed via institutional license. Covers mine-to-cell material flows."
+
+  # ---------------------------------------------------------------------------
+  # ELECTRODE & CELL MANUFACTURING
+  # ---------------------------------------------------------------------------
+  - id: REF_KWADE_2018
+    type: journal
+    title: "Current status and challenges for automotive battery production technologies"
+    author: "Kwade, A. et al."
+    year: 2018
+    doi: 10.1038/s41560-018-0130-3
+    notes: "Cell manufacturing process steps, scrap rates, and energy consumption. Key reference for electrode_mfg and cell_mfg nodes."
+
+  - id: REF_LAIN_2019
+    type: journal
+    title: "Design Strategies for High Power vs. High Energy Lithium-Ion Cells"
+    author: "Lain, M.J. et al."
+    year: 2019
+    doi: 10.3390/batteries5040064
+    notes: "Cell design parameters (loading, density, N/P ratio) for NMC and LFP; useful for target_specs."
+
+  # ---------------------------------------------------------------------------
+  # END-OF-LIFE & RECYCLING
+  # ---------------------------------------------------------------------------
+  - id: REF_HARPER_2019
+    type: journal
+    title: "Recycling lithium-ion batteries from electric vehicles"
+    author: "Harper, G. et al."
+    year: 2019
+    doi: 10.1038/s41586-019-1682-5
+    notes: "Recovery rates for Li, Ni, Co, Mn via hydrometallurgical and direct recycling routes."
+
+  - id: REF_CUSENZA_2022
+    type: journal
+    title: "Environmental assessment of a lithium-ion battery pack manufacturing and its second life"
+    author: "Cusenza, M.A. et al."
+    year: 2022
+    doi: 10.1016/j.resconrec.2021.105949
+    notes: "End-of-life flows and second-life assessment."
+
+  # ---------------------------------------------------------------------------
+  # TESLA SUPPLY CHAIN — Tesla disclosures
+  # Added 2026-04-30 for data/supply_chains/tesla.yaml
+  # ---------------------------------------------------------------------------
+  - id: REF_TESLA_IMPACT_2023
+    type: report
+    title: "Tesla 2023 Impact Report"
+    author: "Tesla, Inc."
+    year: 2023
+    url: https://www.tesla.com/ns_videos/2023-tesla-impact-report.pdf
+    accessed: "2026-04-30"
+    notes: >
+      Names CATL, LG Energy Solution, Panasonic as cell partners. Confirms
+      4680 in-house ramp at Austin/Fremont. Discusses lithium, nickel, cobalt
+      sourcing in "Critical Minerals" section. Primary public-source anchor
+      for Tier 1 Tesla -> cell-maker relationships.
+
+  - id: REF_TESLA_10K_2023
+    type: report
+    title: "Tesla 2023 Annual Report on Form 10-K"
+    author: "Tesla, Inc."
+    year: 2023
+    url: https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001318605&type=10-K
+    accessed: "2026-04-30"
+    notes: >
+      Risk factors and "Human Capital / Suppliers" sections name Panasonic,
+      CATL, LG Energy Solution as cell suppliers. "Lithium-ion battery
+      supply chain" subsection names Albemarle, Ganfeng, Yahua, Liontown,
+      Piedmont as Li suppliers; Vale, BHP, Glencore for Ni/Co. Material
+      contracts disclosed in exhibits (Liontown, Piedmont, Yahua offtakes).
+
+  - id: REF_TESLA_Q42023_CALL
+    type: report
+    title: "Tesla Q4 2023 Earnings Call Transcript"
+    author: "Tesla, Inc."
+    year: 2024
+    url: https://ir.tesla.com/press-release/tesla-fourth-quarter-2023-earnings-call
+    accessed: "2026-04-30"
+    notes: >
+      4680 production at ~7M cells/week run rate stated by Drew Baglino;
+      Cybertruck 4680 in-house plus Panasonic Wakayama supplemental;
+      Megafactory Shanghai progress.
+
+  # ---------------------------------------------------------------------------
+  # TESLA SUPPLY CHAIN — Cell maker disclosures
+  # ---------------------------------------------------------------------------
+  - id: REF_CATL_ESG_2023
+    type: report
+    title: "CATL 2023 Environmental, Social and Governance Report"
+    author: "Contemporary Amperex Technology Co., Limited (CATL)"
+    year: 2024
+    url: https://www.catl.com/en/uploads/1/file/public/2024/05/16/CATL-2023-ESG-Report.pdf
+    accessed: "2026-04-30"
+    notes: >
+      Names key customers (Tesla among top 5) and key suppliers including
+      Hunan Yuneng, Brunp (subsidiary), Beijing Easpring, Ronbay, BTR,
+      Tianqi, Ganfeng, Huayou. Confirms Erfurt operational. Discloses
+      Glencore Co offtake.
+
+  - id: REF_LGES_SR_2023
+    type: report
+    title: "LG Energy Solution 2023 Sustainability Report"
+    author: "LG Energy Solution"
+    year: 2024
+    url: https://www.lgensol.com/en/sustainability/reports
+    accessed: "2026-04-30"
+    notes: >
+      Names Tesla as a major customer of Nanjing and Wroclaw; partial Holland MI
+      attribution. Identifies POSCO Future M, L&F, EcoPro BM as primary CAM
+      suppliers; Allkem (Arcadium), Vale, Compass Minerals as raw material
+      partners.
+
+  - id: REF_PANASONIC_CSR_2023
+    type: report
+    title: "Panasonic Energy Sustainability Data Book 2023"
+    author: "Panasonic Energy Co., Ltd."
+    year: 2023
+    url: https://www.panasonic.com/global/corporate/sustainability/downloads.html
+    accessed: "2026-04-30"
+    notes: >
+      Confirms Sparks NV as Tesla-dedicated 21700 NCA line. Identifies SMM as
+      primary NCA CAM supplier (multi-decade). Names BHP, Vale Ni partners;
+      Albemarle, Livent Li partners. Wakayama 4680 line described as 2024
+      ramp.
+
+  - id: REF_BYD_AR_2023
+    type: report
+    title: "BYD Company Limited 2023 Annual Report"
+    author: "BYD Company Limited"
+    year: 2024
+    url: https://www.bydglobal.com/en/InvestorAr.html
+    accessed: "2026-04-30"
+    notes: >
+      Discloses FinDreams Battery (subsidiary) integration of LFP CAM through
+      Blade cell production. References Yichun (Liqiao) lepidolite operation
+      and Zimbabwe (Bikita) Li acquisition. Specific OEM customer list at
+      segment level only.
+
+  # ---------------------------------------------------------------------------
+  # TESLA SUPPLY CHAIN — Cathode / precursor / lithium / nickel / cobalt
+  # ---------------------------------------------------------------------------
+  - id: REF_HUNAN_YUNENG_PROSPECTUS
+    type: report
+    title: "Hunan Yuneng New Energy Battery Material Co., Ltd. — Shenzhen Stock Exchange Prospectus and Annual Reports 2022-2023"
+    author: "Hunan Yuneng"
+    year: 2023
+    url: https://www.szse.cn
+    accessed: "2026-04-30"
+    notes: >
+      IPO prospectus (Shenzhen ChiNext, 2022) discloses CATL as largest
+      customer (>50% revenue) and BYD as second. Industry's clearest LFP CAM
+      customer-attribution disclosure.
+
+  - id: REF_EASPRING_AR_2023
+    type: report
+    title: "Beijing Easpring Material Technology Co., Ltd. 2023 Annual Report"
+    author: "Beijing Easpring"
+    year: 2024
+    url: https://www.szse.cn
+    accessed: "2026-04-30"
+    notes: NMC CAM customer disclosure naming CATL, LGES, Samsung SDI among top customers.
+
+  - id: REF_RONBAY_AR_2023
+    type: report
+    title: "Ronbay Technology Co., Ltd. 2023 Annual Report"
+    author: "Ronbay Technology"
+    year: 2024
+    url: https://www.sse.com.cn
+    accessed: "2026-04-30"
+    notes: NMC811 high-Ni CAM. Names CATL as top customer.
+
+  - id: REF_BTR_AR_2023
+    type: report
+    title: "BTR New Material Group Co., Ltd. 2023 Annual Report"
+    author: "BTR New Material"
+    year: 2024
+    url: https://www.szse.cn
+    accessed: "2026-04-30"
+    notes: World's largest anode supplier; names CATL, LGES as major customers.
+
+  - id: REF_TIANQI_AR_2023
+    type: report
+    title: "Tianqi Lithium Corporation 2023 Annual Report"
+    author: "Tianqi Lithium"
+    year: 2024
+    url: https://www.tianqilithium.com
+    accessed: "2026-04-30"
+    notes: >
+      Names CATL among top customers. Greenbushes JV with IGO (51%/49%) plus
+      Talison ownership shared with Albemarle. Hong Kong dual listing 2022
+      prospectus has additional offtake disclosures.
+
+  - id: REF_GANFENG_AR_2023
+    type: report
+    title: "Ganfeng Lithium Group Co., Ltd. 2023 Annual Report"
+    author: "Ganfeng Lithium"
+    year: 2024
+    url: https://www.ganfenglithium.com
+    accessed: "2026-04-30"
+    notes: >
+      Names CATL, LGES, BYD, Tesla among major customers. Discloses 3-year
+      Tesla LiOH supply (announced 2021).
+
+  - id: REF_GANFENG_TESLA_PR
+    type: report
+    title: "Ganfeng Lithium — Tesla 3-Year Lithium Hydroxide Supply Agreement (Shenzhen Stock Exchange Disclosure)"
+    author: "Ganfeng Lithium"
+    year: 2021
+    url: https://www.szse.cn
+    accessed: "2026-04-30"
+    notes: Aug-2021 disclosure of 3-year LiOH offtake to Tesla.
+
+  - id: REF_YAHUA_TESLA_PR
+    type: report
+    title: "Sichuan Yahua Industrial Group — Tesla 5-Year Lithium Hydroxide Supply Agreement (SZSE)"
+    author: "Sichuan Yahua Industrial"
+    year: 2020
+    url: https://www.szse.cn
+    accessed: "2026-04-30"
+    notes: Dec-2020 disclosure of 5-year ~21kt/yr LiOH offtake to Tesla.
+
+  - id: REF_LIONTOWN_TESLA_PR_2022
+    type: report
+    title: "Liontown Resources — Tesla 5-Year Spodumene Concentrate Offtake Agreement"
+    author: "Liontown Resources"
+    year: 2022
+    url: https://www.asx.com.au
+    accessed: "2026-04-30"
+    notes: Feb-2022 ASX disclosure; 100kt/yr SC6 to Tesla starting Kathleen Valley first ore.
+
+  - id: REF_PIEDMONT_TESLA_PR_2023
+    type: report
+    title: "Piedmont Lithium — Amended Tesla Spodumene Concentrate Supply Agreement (NAL)"
+    author: "Piedmont Lithium"
+    year: 2023
+    url: https://piedmontlithium.com
+    accessed: "2026-04-30"
+    notes: 2023 amended offtake; Quebec NAL spodumene to Tesla 2023-2025.
+
+  - id: REF_PILBARA_AR_2023
+    type: report
+    title: "Pilbara Minerals 2023 Annual Report"
+    author: "Pilbara Minerals Ltd"
+    year: 2023
+    url: https://www.pilbaraminerals.com.au
+    accessed: "2026-04-30"
+    notes: >
+      Pilgangoora SC6 offtakes to CATL, Ganfeng, POSCO. CATL strategic
+      relationship since 2017.
+
+  - id: REF_PILBARA_OFFTAKE_PR
+    type: report
+    title: "Pilbara Minerals — CATL Offtake Extension"
+    author: "Pilbara Minerals Ltd"
+    year: 2022
+    url: https://www.asx.com.au
+    accessed: "2026-04-30"
+    notes: ASX disclosure of multi-year SC6 offtake extension to CATL.
+
+  - id: REF_HUAYOU_AR_2023
+    type: report
+    title: "Zhejiang Huayou Cobalt Co., Ltd. 2023 Annual Report"
+    author: "Zhejiang Huayou Cobalt"
+    year: 2024
+    url: https://www.sse.com.cn
+    accessed: "2026-04-30"
+    notes: >
+      Names CATL, LGES, Posco, Tesla supply chain partners. Indonesia
+      Morowali Ni operations, JV with Tsingshan.
+
+  - id: REF_GLENCORE_PR_2020
+    type: report
+    title: "Glencore — CATL 5-Year Cobalt Offtake Agreement"
+    author: "Glencore plc"
+    year: 2020
+    url: https://www.glencore.com/media-and-insights/news
+    accessed: "2026-04-30"
+    notes: Sep-2020 joint announcement; 24,500 t Co contained 2020-2024.
+
+  - id: REF_GLENCORE_AR_2023
+    type: report
+    title: "Glencore plc 2023 Annual Report"
+    author: "Glencore plc"
+    year: 2024
+    url: https://www.glencore.com/who-we-are/annual-reports
+    accessed: "2026-04-30"
+    notes: KCC and Mutanda DRC Co operations. Kokkola refinery Co metal/sulfate.
+
+  - id: REF_VALE_AR_2023
+    type: report
+    title: "Vale S.A. 2023 Annual Report"
+    author: "Vale S.A."
+    year: 2024
+    url: https://www.vale.com/investors
+    accessed: "2026-04-30"
+    notes: >
+      Sudbury and Voisey's Bay Ni-Co operations; Bécancour battery-grade
+      Ni sulfate JV with GM (announced 2022). PT Vale Indonesia covered
+      separately.
+
+  - id: REF_VALE_GM_LGES_PR_2022
+    type: report
+    title: "Vale Canada / GM / LGES — Multi-Year Nickel Sulfate Supply Agreements"
+    author: "Vale, GM, LG Energy Solution"
+    year: 2022
+    url: https://www.vale.com/web/guest/w/news
+    accessed: "2026-04-30"
+    notes: 2022 announcements of long-term Ni sulfate supply from Sudbury starting 2025.
+
+  - id: REF_VALE_PANASONIC_PR_2023
+    type: report
+    title: "Vale - Panasonic Energy Long-Term Nickel Supply Agreement"
+    author: "Vale, Panasonic Energy"
+    year: 2023
+    url: https://www.vale.com
+    accessed: "2026-04-30"
+    notes: 2023 PR; Canadian Ni for Sparks-bound NCA.
+
+  - id: REF_BHP_AR_2023
+    type: report
+    title: "BHP Group 2023 Annual Report"
+    author: "BHP Group"
+    year: 2023
+    url: https://www.bhp.com/investors/annual-reporting
+    accessed: "2026-04-30"
+    notes: >
+      Nickel West (Mt Keith, Leinster, Kalgoorlie smelter, Kwinana refinery
+      and Ni sulfate plant). Multi-year Ni sulfate supply commitments to
+      Tesla/Panasonic/Toyota.
+
+  - id: REF_BHP_PANASONIC_PR_2022
+    type: report
+    title: "BHP - Panasonic Energy Long-Term Nickel Sulfate Supply Agreement"
+    author: "BHP, Panasonic Energy"
+    year: 2022
+    url: https://www.bhp.com
+    accessed: "2026-04-30"
+    notes: 2022 multi-year Ni sulfate supply for Tesla cells.
+
+  - id: REF_SMM_IR_2023
+    type: report
+    title: "Sumitomo Metal Mining 2023 Investor Relations and Integrated Report"
+    author: "Sumitomo Metal Mining Co., Ltd."
+    year: 2023
+    url: https://www.smm.co.jp/en/ir/
+    accessed: "2026-04-30"
+    notes: >
+      NCA CAM business; Panasonic primary customer. Coral Bay HPAL (PH),
+      Taganito HPAL Ni intermediates. Niihama refining and CAM finishing.
+
+  - id: REF_ALBEMARLE_10K_2023
+    type: report
+    title: "Albemarle Corporation 2023 Form 10-K"
+    author: "Albemarle Corporation"
+    year: 2024
+    url: https://www.sec.gov
+    accessed: "2026-04-30"
+    notes: >
+      Atacama brine, Greenbushes (49% via Talison), Kemerton, Silver Peak,
+      La Negra. Names Panasonic, LGES among top customers; Tesla supply
+      indirect via Panasonic plus direct.
+
+  - id: REF_LIVENT_10K_2023
+    type: report
+    title: "Livent Corporation 2023 Form 10-K (now Arcadium Lithium)"
+    author: "Livent Corporation"
+    year: 2024
+    url: https://www.sec.gov
+    accessed: "2026-04-30"
+    notes: >
+      Salar del Hombre Muerto (AR) brine + Bessemer City (US) LiOH conversion;
+      Tesla among top customers (multi-year LiOH offtake).
+
+  - id: REF_ALLKEM_AR_2023
+    type: report
+    title: "Allkem Limited 2023 Annual Report (now Arcadium Lithium)"
+    author: "Allkem Limited"
+    year: 2023
+    url: https://www.allkem.co
+    accessed: "2026-04-30"
+    notes: Olaroz (AR) brine and Mt Cattlin (AU) spodumene. LGES customer disclosed.
+
+  - id: REF_LANDF_AR_2023
+    type: report
+    title: "L&F Co., Ltd. 2023 Annual Report"
+    author: "L&F Co., Ltd."
+    year: 2024
+    url: https://www.landf.co.kr
+    accessed: "2026-04-30"
+    notes: NMC811 high-Ni CAM; LGES principal customer.
+
+  - id: REF_ECOPRO_AR_2023
+    type: report
+    title: "EcoPro BM Co., Ltd. 2023 Annual Report"
+    author: "EcoPro BM"
+    year: 2024
+    url: https://dart.fss.or.kr
+    accessed: "2026-04-30"
+    notes: NMC and NCA CAM; Samsung SDI primary, LGES secondary customer.
+
+  - id: REF_POSCO_FUTUREM_SR_2023
+    type: report
+    title: "POSCO Future M 2023 Sustainability Report (formerly POSCO Chemical)"
+    author: "POSCO Future M"
+    year: 2024
+    url: https://www.poscofuturem.com
+    accessed: "2026-04-30"
+    notes: >
+      NMC CAM Gwangyang. POSCO Pilbara LiOH JV (43kt/yr). Indonesia HPAL
+      JV with Huayou. LGES + Samsung SDI primary customers.
+
+  - id: REF_LOMON_BILLIONS_AR_2023
+    type: report
+    title: "Lomon Billions Group 2023 Annual Report"
+    author: "Lomon Billions Group"
+    year: 2024
+    url: https://www.szse.cn
+    accessed: "2026-04-30"
+    notes: World's largest TiO2 producer; FeSO4 and FePO4 LFP precursor segment growing.
+
+  - id: REF_YUNTIANHUA_AR_2023
+    type: report
+    title: "Yunnan Yuntianhua Co., Ltd. 2023 Annual Report"
+    author: "Yunnan Yuntianhua"
+    year: 2024
+    url: https://www.sse.com.cn
+    accessed: "2026-04-30"
+    notes: Phosphate rock mining + H3PO4 production. Hunan Yuneng among customers.
+
+  - id: REF_YONGXING_AR_2023
+    type: report
+    title: "Yongxing Special Materials Technology Co., Ltd. 2023 Annual Report"
+    author: "Yongxing Special Materials"
+    year: 2024
+    url: https://www.sse.com.cn
+    accessed: "2026-04-30"
+    notes: Lepidolite-derived Li2CO3 (Yichun). Customer list industry-disclosed only.
+
+  # ---------------------------------------------------------------------------
+  # TESLA SUPPLY CHAIN — Industry news (compilation references)
+  # ---------------------------------------------------------------------------
+  - id: REF_REUTERS_BATTERY_2023
+    type: report
+    title: "Reuters Battery Supply Chain Reporting Compilation 2022-2024"
+    author: "Reuters (multiple correspondents: Klayman, Jin, Pollard, Lienert)"
+    year: 2023
+    url: https://www.reuters.com/business/autos-transportation
+    accessed: "2026-04-30"
+    notes: >
+      Compilation of Reuters reporting on Tesla cell sourcing: BYD-Tesla LFP
+      (Jun-2022), LGES Holland MI Tesla volume (2022), Panasonic Wakayama 4680
+      (2024), CATL Erfurt anchored by Tesla (2023), Powerwall 3 supply (2023).
+
+  - id: REF_SCMP_BATTERY_2023
+    type: report
+    title: "South China Morning Post EV Battery Reporting 2022-2024"
+    author: "South China Morning Post (multiple authors)"
+    year: 2023
+    url: https://www.scmp.com
+    accessed: "2026-04-30"
+    notes: >
+      Reporting on BYD-Tesla LFP confirmation, BYD Yichun lepidolite, BYD
+      Zimbabwe Bikita acquisition, CATL Indonesia Ni operations.
+
+  - id: REF_NIKKEI_PANASONIC_4680
+    type: report
+    title: "Nikkei Asia Reporting on Panasonic 4680 Production"
+    author: "Nikkei Asia"
+    year: 2024
+    url: https://asia.nikkei.com
+    accessed: "2026-04-30"
+    notes: Panasonic Wakayama 4680 line first commercial shipments to Tesla in 2024.
+
+  - id: REF_EVVOLUMES_2023
+    type: report
+    title: "EVvolumes BEV Battery Supplier Tracking 2023-2024"
+    author: "EVvolumes (Schmidt, R. and team)"
+    year: 2023
+    url: https://www.ev-volumes.com
+    accessed: "2026-04-30"
+    notes: >
+      Quarterly tracking of cell-supplier shares by Tesla model and region.
+      Source for 60/40 CATL/BYD Shanghai LFP estimate; not a Tesla disclosure.
+
+  # ---------------------------------------------------------------------------
+  # FORD SUPPLY CHAIN — Ford disclosures
+  # Added 2026-04-30 for data/supply_chains/ford.yaml
+  # ---------------------------------------------------------------------------
+  - id: REF_FORD_SUSTAIN_2023
+    type: report
+    title: "Ford Motor Company 2023 Integrated Sustainability and Financial Report"
+    author: "Ford Motor Company"
+    year: 2023
+    url: https://corporate.ford.com/microsites/integrated-sustainability-and-financial-report-2023/
+    accessed: "2026-04-30"
+    notes: >
+      Names LG Energy Solution as primary cell supplier for Mustang Mach-E
+      (NMC pouch), CATL as LFP cell partner for Standard Range, SK On for
+      F-150 Lightning. Discusses critical minerals strategy: Vale (Ni),
+      BHP (Ni), POSCO Future M (cathode), Tianqi/Albemarle (Li). Primary
+      anchor for Ford -> cell-maker Tier 1 relationships.
+
+  - id: REF_FORD_10K_2023
+    type: report
+    title: "Ford Motor Company 2023 Annual Report on Form 10-K"
+    author: "Ford Motor Company"
+    year: 2024
+    url: https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000037996&type=10-K
+    accessed: "2026-04-30"
+    notes: >
+      Risk factors and "Battery Cell Suppliers" section name LGES, SK On,
+      and CATL. References BlueOval SK joint venture (TN, KY) and
+      BlueOval Battery Park Marshall MI (CATL-licensed LFP, future).
+      Critical-minerals counterparties cited in MD&A.
+
+  - id: REF_FORD_IRA_30D_2024
+    type: report
+    title: "IRA Section 30D Eligible Vehicles List (Ford entries) — fueleconomy.gov, 2024 model year"
+    author: "U.S. Department of Energy / U.S. Treasury"
+    year: 2024
+    url: https://fueleconomy.gov/feg/tax2023.shtml
+    accessed: "2026-04-30"
+    notes: >
+      Public IRA Section 30D eligibility tracking. 2024 model year: Mach-E
+      Standard Range LOST $7,500 credit due to FEOC content (CATL cells);
+      Mach-E Extended Range retained $3,750 (partial credit, partial FEOC
+      upstream content via LGES Ni/Co supply chain). Disclosure event that
+      legally attests CATL relationship for SR.
+
+  - id: REF_FORD_SPECS_2024
+    type: report
+    title: "Ford Mustang Mach-E 2024 Model Year Specifications (ford.com)"
+    author: "Ford Motor Company"
+    year: 2024
+    url: https://www.ford.com/suvs/mach-e/models/
+    accessed: "2026-04-30"
+    notes: >
+      Ford's public configuration / spec pages for 2024 Mach-E. Source for
+      pack kWh values: SR RWD 70 kWh nominal / 72 kWh usable; ER RWD/AWD
+      91 kWh nominal / 88 kWh usable. EPA ranges and chemistry per trim.
+
+  - id: REF_FORD_BLUEOVAL_2023
+    type: report
+    title: "Ford BlueOval SK and BlueOval Battery Park Announcements (2022-2024)"
+    author: "Ford Motor Company / SK On"
+    year: 2023
+    url: https://media.ford.com
+    accessed: "2026-04-30"
+    notes: >
+      Compilation of Ford announcements: BlueOval SK Stanton TN (NMC, F-150
+      Lightning, online 2025), BlueOval SK Glendale KY (NMC, online 2025+),
+      BlueOval Battery Park Marshall MI (CATL-licensed LFP, online 2026+,
+      Mach-E next-gen scope). All FUTURE-scope, not in 2023-2024 ford.yaml.
+
+  - id: REF_REUTERS_FORD_LFP_2023
+    type: report
+    title: "Reuters Reporting on Ford Mach-E LFP Transition (2023)"
+    author: "Reuters (Klayman, Lienert, White)"
+    year: 2023
+    url: https://www.reuters.com/business/autos-transportation
+    accessed: "2026-04-30"
+    notes: >
+      Coverage of Ford's May-2023 announcement of CATL LFP cells for Mach-E
+      Standard Range (and Lightning); Cuautitlán Mach-E build implications;
+      LGES Holland MI / Wroclaw Mach-E ER pack flow. Named-source quotes
+      from Ford executives Lisa Drake and Jim Farley.

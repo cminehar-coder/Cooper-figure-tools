@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "figure-tools"
+version = "0.1.0"
+description = "Waterfall and Sankey figures from plain Python data, with paper and slide styles."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [{ name = "Cooper Minehart" }]
+dependencies = ["matplotlib>=3.7", "pyyaml>=6.0", "plotly>=5.18"]
+keywords = ["sankey", "waterfall", "figures", "matplotlib", "material flow"]
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+
+[project.scripts]
+figure-tools-materialflow = "figure_tools.materialflow.render_sankey:main"
+
+[tool.setuptools.packages.find]
+include = ["figure_tools*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

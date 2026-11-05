@@ -1,0 +1,168 @@
+# =============================================================================
+# Battery Material Flow Sankey — Schema Definition
+# =============================================================================
+# This file documents every field used in route data files.
+# All data files under data/ must conform to this schema.
+#
+# Functional unit: per kWh of nameplate cell capacity
+# Default mass unit: kg/kWh (unless overridden per-flow)
+# =============================================================================
+
+
+# -----------------------------------------------------------------------------
+# TOP-LEVEL METADATA
+# -----------------------------------------------------------------------------
+meta:
+  chemistry: string          # e.g., NMC811, LFP, NCA, LMFP
+  route: string              # Unique route identifier, e.g., conventional, hydrothermal_nano
+  route_description: string  # 1-2 sentence plain-language description of this process route
+
+  functional_unit: kWh       # Always kWh (nameplate cell capacity)
+  year: integer              # Primary reference year for data (e.g., 2023)
+  region: string             # Geographic scope: global, CN, US, EU, etc.
+  status: string             # scaffold | in_progress | reviewed | complete
+
+  # Cell-level design specs — these anchor all upstream mass flows to the functional unit.
+  # Changing a spec here should cascade to flow values (document recalculation in notes).
+  target_specs:
+    cell_format: string          # cylindrical | pouch | prismatic
+    nominal_voltage_V: float     # Cell nominal voltage
+    cell_energy_density_Wh_L: float   # Volumetric energy density
+    cell_energy_density_Wh_kg: float  # Gravimetric energy density
+    cathode_loading_mg_cm2: float     # Cathode active material areal loading
+    cathode_density_g_cc: float       # Calendered cathode electrode density
+    anode_loading_mg_cm2: float       # Anode active material areal loading
+    n_p_ratio: float                  # Negative/positive capacity ratio (typically 1.05–1.15)
+    electrolyte_amount_g_Ah: float    # Electrolyte mass per Ah of capacity
+    notes: string                     # Any assumptions or source for these specs
+
+
+# -----------------------------------------------------------------------------
+# NODES  (process steps)
+# -----------------------------------------------------------------------------
+# Each node represents a transformation stage. Nodes are shared across all
+# materials flowing through the system; materials are differentiated on flows.
+#
+# Standard node IDs (use these consistently across all route files):
+#
+#   mining              — Raw ore or brine extraction
+#   beneficiation       — Physical concentration / ore dressing
+#   chem_processing     — Chemical refining to battery-grade salts or intermediates
+#   precursor_mfg       — PCAM synthesis (e.g., co-precipitation of hydroxide precursor)
+#   cam_mfg             — Cathode active material calcination / sintering
+#   anode_mfg           — Anode material processing (spheronization, purification, graphitization)
+#   electrode_mfg       — Slurry mixing, coating, drying, calendering, slitting
+#   cell_mfg            — Winding/stacking, electrolyte filling, sealing, formation cycling
+#   module_assembly     — Cell-to-module integration (busbars, thermal interface, housing)
+#   pack_mfg            — Module-to-pack integration (BMS, cooling, enclosure)
+#   application         — End-use (EV, stationary storage, consumer electronics)
+#   eol_recycling       — End-of-life collection, dismantling, and recycling
+#   waste               — Scrap and loss sink (use is_loss: true on flows to this node)
+#
+# Add chemistry-specific nodes only when a step is structurally distinct
+# (e.g., lfp_precursor_mfg if LFP uses a different precursor route than NMC).
+
+nodes:
+  - id: string               # From the standard list above (or custom, documented)
+    label: string            # Display label for Sankey
+    description: string      # What happens at this step
+
+
+# -----------------------------------------------------------------------------
+# FLOWS  (material flows between nodes)
+# -----------------------------------------------------------------------------
+flows:
+  - id: string               # Unique ID, e.g., F001. Increment sequentially.
+    from: string             # Source node ID
+    to: string               # Destination node ID
+
+    material: string         # Human-readable material name (e.g., "lithium hydroxide monohydrate")
+    material_id: string      # ID from materials_registry.yaml (preferred for cross-referencing)
+    cas: string              # CAS number if applicable (optional)
+
+    value: float             # Quantity per functional unit (kWh)
+    unit: string             # kg_per_kWh | g_per_kWh | L_per_kWh | MJ_per_kWh
+                             # For energy flows use MJ_per_kWh; for water use L_per_kWh
+
+    # Uncertainty bounds — populate when literature shows a range
+    uncertainty:
+      low: float             # Lower bound (same unit as value)
+      high: float            # Upper bound (same unit as value)
+      method: string         # literature_range | expert_elicitation | monte_carlo | not_estimated
+
+    # Yield / loss metadata — document the step's efficiency so mass balance is traceable
+    yield_fraction: float    # Fraction of input material recovered as useful output (0–1)
+                             # e.g., 0.92 means 8% lost as scrap/waste
+    loss_destination: string # Node ID where losses go (usually "waste"); omit if yield = 1.0
+
+    is_loss: boolean         # true if this flow IS the loss/scrap stream (flows to waste node)
+    is_recycled: boolean     # true if this flow is a recycled material stream
+
+    source_ids:              # List of reference IDs from sources/references.yaml
+      - string
+
+    year: integer            # Year the source data represents (may differ from meta.year)
+    region: string           # Geographic scope: ISO country code (CN, AU, DRC, US, etc.),
+                             # ISO region (LATAM, SEA), or "global_mix" for an aggregate flow.
+
+    # Geographic breakdown — populate when a flow is a global aggregate that can be
+    # disaggregated into regional sub-flows. The Sankey renderer can either show the
+    # aggregate flow or expand it into per-region flows. share_pct values must sum to 100.
+    region_breakdown:
+      - region: string         # Country/region code
+        share_pct: float       # Percent of total flow attributable to this region (0–100)
+        value: float           # Optional — same unit as parent flow; derive from share_pct × parent value if absent
+        companies:             # Dominant operators/producers in this region for this flow
+          - string             # Company name or ID
+        source_ids:             # Sources supporting this regional share
+          - string
+        notes: string           # Region-specific caveats
+
+    # Companies — list when no regional breakdown is provided, or when companies span regions
+    companies:
+      - string                 # e.g., "CATL", "Glencore", "Tianqi Lithium". Use canonical names.
+
+    # Discrepancy flags — structured record of data quality concerns on this specific flow
+    discrepancy_flags:
+      - type: string           # source_contradiction | mass_balance_gap | unaccounted_material |
+                               # allocation_dependent | regional_share_uncertain | year_mismatch
+        description: string    # Plain-language explanation of the issue
+        sources_compared:      # Which source IDs disagree (for source_contradiction)
+          - string
+        magnitude_pct: float   # How big the discrepancy is, as % deviation
+        status: string         # open | investigating | resolved | accepted_uncertainty
+        resolution_notes: string  # If resolved, how
+
+    notes: string            # Assumptions, caveats, calculation methodology
+    verified: boolean        # true if cross-checked against ≥2 independent sources
+
+
+# -----------------------------------------------------------------------------
+# MATERIALS REGISTRY  (defined in schema/materials_registry.yaml)
+# -----------------------------------------------------------------------------
+# Referenced by material_id on flows. Keeps material definitions DRY.
+materials:
+  - id: string               # e.g., LIOH_MH, NISO4, COSO4, MNSO4, GRAPHITE_NAT
+    name: string             # Full chemical name
+    formula: string          # Chemical formula
+    molar_mass_g_mol: float  # For unit conversion checks
+    category: string         # lithium | nickel | cobalt | manganese | anode | electrolyte |
+                             # current_collector | separator | other
+    notes: string            # Grade specs, typical purity, relevant standards
+
+
+# -----------------------------------------------------------------------------
+# SOURCES  (defined in sources/references.yaml)
+# -----------------------------------------------------------------------------
+# Referenced by source_ids on flows. Full citation details live there.
+sources:
+  - id: string               # e.g., REF_IEA_2023_CMR
+    type: string             # report | journal | database | personal_communication | dataset
+    title: string
+    author: string           # Last, First or Organization
+    year: integer
+    doi: string              # Preferred over URL for journal articles
+    url: string              # For reports/datasets without DOI
+    pages: string            # Specific pages or table/figure referenced
+    accessed: string         # ISO date: YYYY-MM-DD (for web resources)
+    notes: string            # What specific data this source provides

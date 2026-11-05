@@ -1,0 +1,11 @@
+{
+  "title": "figure-tools: waterfall and Sankey figures from plain Python data",
+  "description": "Python tools that turn a list of numbers into publication-style waterfall and Sankey figures (PDF, SVG, PNG), with paper and slide styles, plus a renderer for interactive material-flow Sankey diagrams with a bibliography.",
+  "upload_type": "software",
+  "license": "MIT",
+  "creators": [
+    { "name": "Minehart, Cooper", "affiliation": "Carnegie Mellon University" }
+  ],
+  "keywords": ["sankey", "waterfall", "figures", "matplotlib", "material flows"],
+  "access_right": "open"
+}

@@ -1,0 +1,241 @@
+# =============================================================================
+# Materials Registry
+# =============================================================================
+# Shared material definitions referenced by material_id on flows.
+# Add new materials here; do not duplicate across route files.
+# =============================================================================
+
+materials:
+
+  # ---------------------------------------------------------------------------
+  # LITHIUM
+  # ---------------------------------------------------------------------------
+  - id: LI_SPOD_ORE
+    name: Spodumene ore
+    formula: LiAlSi2O6
+    molar_mass_g_mol: 186.09
+    category: lithium
+    notes: "Typical Li2O grade 1.0–2.0%; primary hard-rock lithium source (Australia, Canada)"
+
+  - id: LI_SPOD_CONC
+    name: Spodumene concentrate
+    formula: LiAlSi2O6
+    molar_mass_g_mol: 186.09
+    category: lithium
+    notes: "Upgraded to ~6% Li2O; feedstock for chemical conversion"
+
+  - id: LI_BRINE
+    name: Lithium brine (raw)
+    formula: null
+    molar_mass_g_mol: null
+    category: lithium
+    notes: "Li concentration ~0.05–0.15% by weight; evaporite deposits (Atacama, Qinghai)"
+
+  - id: LI2CO3
+    name: Lithium carbonate
+    formula: Li2CO3
+    molar_mass_g_mol: 73.89
+    category: lithium
+    notes: "Battery-grade ≥99.5%; primary feedstock for LFP; also intermediate for LiOH"
+
+  - id: LIOH_MH
+    name: Lithium hydroxide monohydrate
+    formula: LiOH·H2O
+    molar_mass_g_mol: 41.96
+    category: lithium
+    notes: "Battery-grade ≥56.5% LiOH; preferred for high-Ni NMC (≥NMC622) and NCA"
+
+  # ---------------------------------------------------------------------------
+  # NICKEL
+  # ---------------------------------------------------------------------------
+  - id: NI_LATERITE_ORE
+    name: Nickel laterite ore
+    formula: null
+    molar_mass_g_mol: null
+    category: nickel
+    notes: "Typical Ni grade 1.0–2.0%; dominant ore type globally; processed via HPAL or pyrometallurgy"
+
+  - id: NI_SULFIDE_ORE
+    name: Nickel sulfide ore
+    formula: null
+    molar_mass_g_mol: null
+    category: nickel
+    notes: "Typical Ni grade 0.5–3%; lower processing cost than laterite; declining share of supply"
+
+  - id: NISO4_SOL
+    name: Nickel sulfate solution (battery-grade)
+    formula: NiSO4
+    molar_mass_g_mol: 154.75
+    category: nickel
+    notes: "Battery-grade ≥22% Ni; primary feedstock for NMC/NCA precursor co-precipitation"
+
+  # ---------------------------------------------------------------------------
+  # COBALT
+  # ---------------------------------------------------------------------------
+  - id: CO_ORE
+    name: Cobalt-bearing ore (Cu-Co)
+    formula: null
+    molar_mass_g_mol: null
+    category: cobalt
+    notes: "Typical Co grade 0.1–0.5%; predominantly DRC; cobalt is byproduct of copper mining"
+
+  - id: COSO4_SOL
+    name: Cobalt sulfate solution (battery-grade)
+    formula: CoSO4
+    molar_mass_g_mol: 154.99
+    category: cobalt
+    notes: "Battery-grade ≥20% Co; feedstock for NMC/NCA precursor"
+
+  # ---------------------------------------------------------------------------
+  # MANGANESE
+  # ---------------------------------------------------------------------------
+  - id: MN_ORE
+    name: Manganese ore
+    formula: MnO2
+    molar_mass_g_mol: 86.94
+    category: manganese
+    notes: "Typical Mn grade 25–50%; major producers: South Africa, Australia, Gabon"
+
+  - id: MNSO4_SOL
+    name: Manganese sulfate solution (battery-grade)
+    formula: MnSO4
+    molar_mass_g_mol: 151.00
+    category: manganese
+    notes: "Battery-grade; feedstock for NMC precursor and LMO/LMFP"
+
+  # ---------------------------------------------------------------------------
+  # IRON & PHOSPHORUS (LFP-specific)
+  # ---------------------------------------------------------------------------
+  - id: FE_PHOSPHATE
+    name: Iron phosphate (battery-grade)
+    formula: FePO4
+    molar_mass_g_mol: 150.82
+    category: iron_phosphorus
+    notes: "Primary LFP precursor; can be synthesized via wet chemical or hydrothermal route"
+
+  - id: FE_OXALATE
+    name: Iron oxalate
+    formula: FeC2O4
+    molar_mass_g_mol: 143.87
+    category: iron_phosphorus
+    notes: "Alternative LFP precursor; used in some solid-state synthesis routes"
+
+  - id: PHOSPHATE_ROCK
+    name: Phosphate rock
+    formula: Ca5(PO4)3F
+    molar_mass_g_mol: 504.30
+    category: iron_phosphorus
+    notes: "Raw phosphorus source; concentrated to phosphoric acid before use"
+
+  - id: H3PO4
+    name: Phosphoric acid (battery-grade)
+    formula: H3PO4
+    molar_mass_g_mol: 97.99
+    category: iron_phosphorus
+    notes: "Used in wet-chemical LFP precursor synthesis"
+
+  # ---------------------------------------------------------------------------
+  # PRECURSORS
+  # ---------------------------------------------------------------------------
+  - id: PCAM_NMC811
+    name: NMC811 hydroxide precursor
+    formula: "Ni0.8Mn0.1Co0.1(OH)2"
+    molar_mass_g_mol: 92.6
+    category: precursor
+    notes: "Co-precipitated from NiSO4/CoSO4/MnSO4 solution; d50 typically 10–15 µm"
+
+  - id: PCAM_LFP_FEPHO4
+    name: LFP iron phosphate precursor
+    formula: FePO4
+    molar_mass_g_mol: 150.82
+    category: precursor
+    notes: "Standard precursor for solid-state LFP synthesis"
+
+  # ---------------------------------------------------------------------------
+  # CATHODE ACTIVE MATERIALS
+  # ---------------------------------------------------------------------------
+  - id: CAM_NMC811
+    name: NMC811 cathode active material
+    formula: "LiNi0.8Mn0.1Co0.1O2"
+    molar_mass_g_mol: 96.5
+    category: cam
+    notes: "Calcined from PCAM_NMC811 + LiOH; tap density ~2.2 g/cc; single or polycrystalline"
+
+  - id: CAM_LFP_STD
+    name: LFP cathode active material (standard)
+    formula: LiFePO4
+    molar_mass_g_mol: 157.76
+    category: cam
+    notes: "Conventional solid-state synthesis; d50 ~2–5 µm; electrode density ~2.2–2.4 g/cc"
+
+  - id: CAM_LFP_NANO
+    name: LFP cathode active material (nano, high compaction)
+    formula: LiFePO4
+    molar_mass_g_mol: 157.76
+    category: cam
+    notes: "Hydrothermal/nano synthesis; d50 ~0.2–0.8 µm; carbon-coated; electrode density up to 2.5–2.6 g/cc"
+
+  # ---------------------------------------------------------------------------
+  # ANODE
+  # ---------------------------------------------------------------------------
+  - id: GRAPHITE_NAT
+    name: Natural graphite (spheronized, purified)
+    formula: C
+    molar_mass_g_mol: 12.01
+    category: anode
+    notes: "Spheronized from flake graphite; purified to >99.95% C; primary anode for LIBs"
+
+  - id: GRAPHITE_SYN
+    name: Synthetic graphite
+    formula: C
+    molar_mass_g_mol: 12.01
+    category: anode
+    notes: "Graphitized from petroleum coke at ~3000°C; higher purity, higher cost/energy than natural"
+
+  - id: GRAPHITE_FLAKE
+    name: Natural flake graphite (mined)
+    formula: C
+    molar_mass_g_mol: 12.01
+    category: anode
+    notes: "Raw mined graphite before spheronization; typical C content 85–95%"
+
+  # ---------------------------------------------------------------------------
+  # ELECTROLYTE
+  # ---------------------------------------------------------------------------
+  - id: LIPF6
+    name: Lithium hexafluorophosphate
+    formula: LiPF6
+    molar_mass_g_mol: 151.90
+    category: electrolyte
+    notes: "Primary Li-salt in conventional electrolyte; ~1M concentration in carbonate solvents"
+
+  - id: ELECTROLYTE_BULK
+    name: Liquid electrolyte (bulk, formulated)
+    formula: null
+    molar_mass_g_mol: null
+    category: electrolyte
+    notes: "LiPF6 in EC/DMC or EC/EMC/DMC; typically 2.0–2.8 g/Ah at cell level"
+
+  # ---------------------------------------------------------------------------
+  # CURRENT COLLECTORS & CELL HARDWARE
+  # ---------------------------------------------------------------------------
+  - id: AL_FOIL
+    name: Aluminum foil (cathode current collector)
+    formula: Al
+    molar_mass_g_mol: 26.98
+    category: current_collector
+    notes: "Thickness 12–16 µm; battery-grade purity ≥99.9%"
+
+  - id: CU_FOIL
+    name: Copper foil (anode current collector)
+    formula: Cu
+    molar_mass_g_mol: 63.55
+    category: current_collector
+    notes: "Thickness 6–10 µm; electrolytic copper; major cost and supply chain concern"
+
+  - id: SEPARATOR
+    name: Separator (polyolefin)
+    formula: null
+    molar_mass_g_mol: null
+    category: separator
+    notes: "PE, PP, or trilayer PE/PP/PE; thickness 12–25 µm; may include ceramic coating"
