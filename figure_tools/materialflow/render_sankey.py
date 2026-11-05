@@ -165,6 +165,7 @@ class Options:
     vehicle: Optional[str] = None
     supply_chain_path: Optional[Path] = None
     renderer: str = "plotly"  # "plotly" | "d3"
+    dataset: Any = None       # a materialflow.tables.Dataset; read from YAML if None
 
 
 @dataclass
@@ -235,9 +236,8 @@ def parse_flow(raw: dict[str, Any]) -> Flow:
     )
 
 
-def load_route(path: Path) -> RouteData:
-    """Load a route YAML and parse all flows."""
-    raw = load_yaml(path)
+def route_from_raw(raw: dict[str, Any]) -> RouteData:
+    """Parse an already-loaded route dict."""
     flows = [parse_flow(f) for f in (raw.get("flows") or [])]
     return RouteData(
         meta=raw.get("meta") or {},
@@ -245,6 +245,19 @@ def load_route(path: Path) -> RouteData:
         flows=flows,
         raw=raw,
     )
+
+
+def index_materials(raw: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    return {str(m["id"]): m for m in (raw.get("materials") or []) if m.get("id")}
+
+
+def index_references(raw: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    return {str(s["id"]): s for s in (raw.get("sources") or []) if s.get("id")}
+
+
+def load_route(path: Path) -> RouteData:
+    """Load a route YAML and parse all flows."""
+    return route_from_raw(load_yaml(path))
 
 
 def load_materials_registry(path: Path) -> dict[str, dict[str, Any]]:
@@ -2660,23 +2673,30 @@ def _inject_column_spacers(trace: SankeyTrace) -> SankeyTrace:
     )
 
 
-def render_vehicle_html(opts: Options) -> str:
-    """Render a multi-trim vehicle Sankey at pack-level kg."""
+def build_vehicle_panels(opts: Options):
+    """Load the YAML files and build one trace per panel.
+
+    Returns (products, panel_specs); panel_specs is a list of
+    (title, SankeyTrace, height_px). Shared by the HTML writers and by
+    figure_tools.MaterialFlow.
+    """
     # Reset the ref-number map so each render starts numbering at [1].
     _reset_ref_numbers()
-    assert opts.supply_chain_path is not None
     assert opts.vehicle is not None
-    sc_data = load_yaml(opts.supply_chain_path)
+    ds = opts.dataset
+    if ds is None:
+        assert opts.supply_chain_path is not None
+        from .tables import Dataset
+        ds = Dataset.from_yaml(opts.supply_chain_path)
+        opts.dataset = ds
+    sc_data = ds.supply_chain
     products = find_matching_products(sc_data, opts.vehicle)
     if not products:
-        sys.stderr.write(f"ERROR: no products match '{opts.vehicle}' in {opts.supply_chain_path}\n")
+        sys.stderr.write(f"ERROR: no products match '{opts.vehicle}' in {opts.supply_chain_path or 'the table'}\n")
         sys.exit(1)
     relationships = sc_data.get("supply_relationships") or []
-    root = _project_root_from_route(opts.supply_chain_path)
-    materials_path = root / "schema" / "materials_registry.yaml"
-    refs_path = root / "sources" / "references.yaml"
-    materials = load_materials_registry(materials_path)
-    refs = load_references(refs_path)
+    materials = index_materials(ds.materials)
+    refs = index_references(ds.references)
 
     # Build one (label, mass_trace, ew_trace) per product
     panels: list[tuple[str, dict[str, Any], Optional[SankeyTrace], Optional[SankeyTrace]]] = []
@@ -2695,8 +2715,10 @@ def render_vehicle_html(opts: Options) -> str:
         if not rf:
             sys.stderr.write(f"WARN: skipping product {product.get('id')}: no route_file\n")
             continue
-        route_path = (root / rf).resolve()
-        route = load_route(route_path)
+        if rf not in ds.routes:
+            raise ValueError(f"product {product.get('id')} points at route {rf!r}, which is not in the data "
+                             f"(routes: {', '.join(ds.routes) or 'none'})")
+        route = route_from_raw(ds.routes[rf])
         visited = derive_visited_regions(product, relationships)
         product_label = f"{product.get('product')} ({product.get('pack_chemistry')})"
         scaled = _filter_route_for_vehicle(
@@ -2742,11 +2764,19 @@ def render_vehicle_html(opts: Options) -> str:
         sys.stderr.write("ERROR: no renderable panels.\n")
         sys.exit(1)
 
-    # One row per panel; if a panel has both mass and EW, give it two rows.
-    rows_per_panel: list[int] = []
-    for _label, _product, mass_trace, ew_trace in panels:
-        rows_per_panel.append((1 if mass_trace else 0) + (1 if ew_trace else 0))
-    total_rows = sum(rows_per_panel)
+    panel_specs: list[tuple[str, SankeyTrace, int]] = []  # (title, trace, height)
+    for (label, _product, mass_trace, ew_trace) in panels:
+        if mass_trace:
+            panel_specs.append((f"{label} — Mass (kg/pack)", mass_trace, 1100))
+        if ew_trace:
+            panel_specs.append((f"{label} — Energy & water (MJ or L /pack)", ew_trace, 220))
+    return products, panel_specs
+
+
+def render_vehicle_html(opts: Options) -> str:
+    """Render a multi-trim vehicle Sankey at pack-level kg."""
+    products, panel_specs = build_vehicle_panels(opts)
+    assert opts.supply_chain_path is not None
     # Build one Plotly Figure per panel and concatenate the HTML <div>s.
     # Plotly.js's multi-subplot Sankey ignores fixed x coordinates after the
     # first sub-panel, collapsing columns visually. Single-figure Sankeys
@@ -2758,13 +2788,6 @@ def render_vehicle_html(opts: Options) -> str:
         f"regions filtered to disclosed suppliers."
         f"</span>"
     )
-    panel_specs: list[tuple[str, SankeyTrace, int]] = []  # (title, trace, height)
-    for (label, _product, mass_trace, ew_trace) in panels:
-        if mass_trace:
-            panel_specs.append((f"{label} — Mass (kg/pack)", mass_trace, 1100))
-        if ew_trace:
-            panel_specs.append((f"{label} — Energy & water (MJ or L /pack)", ew_trace, 220))
-
     # D3 renderer: emit a self-contained HTML using d3-sankey with strict
     # rank-pinned column placement (no Plotly column collapse).
     if opts.renderer == "d3":

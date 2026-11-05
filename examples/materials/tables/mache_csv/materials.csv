@@ -1,0 +1,30 @@
+id,name,formula,molar_mass_g_mol,category,notes
+LI_SPOD_ORE,Spodumene ore,LiAlSi2O6,186.09,lithium,"Typical Li2O grade 1.0–2.0%; primary hard-rock lithium source (Australia, Canada)"
+LI_SPOD_CONC,Spodumene concentrate,LiAlSi2O6,186.09,lithium,Upgraded to ~6% Li2O; feedstock for chemical conversion
+LI_BRINE,Lithium brine (raw),,,lithium,"Li concentration ~0.05–0.15% by weight; evaporite deposits (Atacama, Qinghai)"
+LI2CO3,Lithium carbonate,Li2CO3,73.89,lithium,Battery-grade ≥99.5%; primary feedstock for LFP; also intermediate for LiOH
+LIOH_MH,Lithium hydroxide monohydrate,LiOH·H2O,41.96,lithium,Battery-grade ≥56.5% LiOH; preferred for high-Ni NMC (≥NMC622) and NCA
+NI_LATERITE_ORE,Nickel laterite ore,,,nickel,Typical Ni grade 1.0–2.0%; dominant ore type globally; processed via HPAL or pyrometallurgy
+NI_SULFIDE_ORE,Nickel sulfide ore,,,nickel,Typical Ni grade 0.5–3%; lower processing cost than laterite; declining share of supply
+NISO4_SOL,Nickel sulfate solution (battery-grade),NiSO4,154.75,nickel,Battery-grade ≥22% Ni; primary feedstock for NMC/NCA precursor co-precipitation
+CO_ORE,Cobalt-bearing ore (Cu-Co),,,cobalt,Typical Co grade 0.1–0.5%; predominantly DRC; cobalt is byproduct of copper mining
+COSO4_SOL,Cobalt sulfate solution (battery-grade),CoSO4,154.99,cobalt,Battery-grade ≥20% Co; feedstock for NMC/NCA precursor
+MN_ORE,Manganese ore,MnO2,86.94,manganese,"Typical Mn grade 25–50%; major producers: South Africa, Australia, Gabon"
+MNSO4_SOL,Manganese sulfate solution (battery-grade),MnSO4,151.0,manganese,Battery-grade; feedstock for NMC precursor and LMO/LMFP
+FE_PHOSPHATE,Iron phosphate (battery-grade),FePO4,150.82,iron_phosphorus,Primary LFP precursor; can be synthesized via wet chemical or hydrothermal route
+FE_OXALATE,Iron oxalate,FeC2O4,143.87,iron_phosphorus,Alternative LFP precursor; used in some solid-state synthesis routes
+PHOSPHATE_ROCK,Phosphate rock,Ca5(PO4)3F,504.3,iron_phosphorus,Raw phosphorus source; concentrated to phosphoric acid before use
+H3PO4,Phosphoric acid (battery-grade),H3PO4,97.99,iron_phosphorus,Used in wet-chemical LFP precursor synthesis
+PCAM_NMC811,NMC811 hydroxide precursor,Ni0.8Mn0.1Co0.1(OH)2,92.6,precursor,Co-precipitated from NiSO4/CoSO4/MnSO4 solution; d50 typically 10–15 µm
+PCAM_LFP_FEPHO4,LFP iron phosphate precursor,FePO4,150.82,precursor,Standard precursor for solid-state LFP synthesis
+CAM_NMC811,NMC811 cathode active material,LiNi0.8Mn0.1Co0.1O2,96.5,cam,Calcined from PCAM_NMC811 + LiOH; tap density ~2.2 g/cc; single or polycrystalline
+CAM_LFP_STD,LFP cathode active material (standard),LiFePO4,157.76,cam,Conventional solid-state synthesis; d50 ~2–5 µm; electrode density ~2.2–2.4 g/cc
+CAM_LFP_NANO,"LFP cathode active material (nano, high compaction)",LiFePO4,157.76,cam,Hydrothermal/nano synthesis; d50 ~0.2–0.8 µm; carbon-coated; electrode density up to 2.5–2.6 g/cc
+GRAPHITE_NAT,"Natural graphite (spheronized, purified)",C,12.01,anode,Spheronized from flake graphite; purified to >99.95% C; primary anode for LIBs
+GRAPHITE_SYN,Synthetic graphite,C,12.01,anode,"Graphitized from petroleum coke at ~3000°C; higher purity, higher cost/energy than natural"
+GRAPHITE_FLAKE,Natural flake graphite (mined),C,12.01,anode,Raw mined graphite before spheronization; typical C content 85–95%
+LIPF6,Lithium hexafluorophosphate,LiPF6,151.9,electrolyte,Primary Li-salt in conventional electrolyte; ~1M concentration in carbonate solvents
+ELECTROLYTE_BULK,"Liquid electrolyte (bulk, formulated)",,,electrolyte,LiPF6 in EC/DMC or EC/EMC/DMC; typically 2.0–2.8 g/Ah at cell level
+AL_FOIL,Aluminum foil (cathode current collector),Al,26.98,current_collector,Thickness 12–16 µm; battery-grade purity ≥99.9%
+CU_FOIL,Copper foil (anode current collector),Cu,63.55,current_collector,Thickness 6–10 µm; electrolytic copper; major cost and supply chain concern
+SEPARATOR,Separator (polyolefin),,,separator,"PE, PP, or trilayer PE/PP/PE; thickness 12–25 µm; may include ceramic coating"

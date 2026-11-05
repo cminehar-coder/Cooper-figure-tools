@@ -1,0 +1,50 @@
+route,id,label,description
+data/lfp/solid_state.yaml,mining,Mining,"Extraction of raw materials: phosphate rock (P source), iron ore or iron-bearing waste streams (Fe source), spodumene or brine (Li), and flake graphite (anode).
+"
+data/lfp/solid_state.yaml,beneficiation,Beneficiation / Concentration,"Physical upgrading: phosphate rock flotation/washing, iron ore concentration, graphite flotation. Less complex than NMC (no Ni, Co, Mn required).
+"
+data/lfp/solid_state.yaml,chem_processing,Chemical Processing,"Conversion to battery-grade intermediates: phosphate rock → H3PO4; iron source → FeSO4 or Fe(OH)3; Li2CO3 from spodumene or brine. FePO4 precipitated from FeSO4 + H3PO4.
+"
+data/lfp/solid_state.yaml,precursor_mfg,Precursor Manufacturing,"Production of iron phosphate (FePO4) precursor via wet-chemical precipitation or oxidation of ferrous phosphate. Alternative: direct use of iron oxalate. Precursor quality (particle size, morphology) determines final LFP properties.
+"
+data/lfp/solid_state.yaml,cam_mfg,CAM Manufacturing (LFP),"Solid-state calcination: FePO4 + Li2CO3 + carbon source → LiFePO4/C at ~650–750°C. Inert or reducing atmosphere. Carbon coating formed in situ. Milling to final PSD.
+"
+data/lfp/solid_state.yaml,anode_mfg,Anode Material Manufacturing,"Spheronization and purification of natural graphite, or graphitization of petroleum coke. Same as NMC route.
+"
+data/lfp/solid_state.yaml,electrode_mfg,Electrode Manufacturing,"LFP cathode slurry (LFP + conductive carbon + PVDF + NMP), coating on Al foil, drying, calendering to ~2.3 g/cc. NMC uses water-based slurry option less common for LFP.
+"
+data/lfp/solid_state.yaml,cell_mfg,Cell Manufacturing,"Winding or stacking, electrolyte filling, sealing, formation cycling. LFP formation protocol differs from NMC (different SEI chemistry).
+"
+data/lfp/solid_state.yaml,module_assembly,Module Assembly,"Module integration with busbars, thermal management, and housing."
+data/lfp/solid_state.yaml,pack_mfg,Pack Manufacturing,"Module-to-pack integration with BMS, cooling, and enclosure."
+data/lfp/solid_state.yaml,application,Application,"End-use: stationary energy storage, commercial EVs, e-buses, or LFP-based EV platforms.
+"
+data/lfp/solid_state.yaml,eol_recycling,End-of-Life / Recycling,"LFP recycling is economically more challenging than NMC (lower Co/Ni value). Direct recycling or relithiation routes under development. Current commercial recovery primarily for Li; Fe and P largely unrecovered.
+"
+data/lfp/solid_state.yaml,waste,Process Waste / Losses,Sink for all process losses and scrap.
+data/nmc811/conventional.yaml,mining,Mining,"Extraction of raw ores: spodumene (Li), nickel sulfide/laterite ore (Ni), copper-cobalt ore (Co, byproduct), manganese ore (Mn), and flake graphite (anode).
+"
+data/nmc811/conventional.yaml,beneficiation,Beneficiation / Concentration,"Physical upgrading of ore to concentrate: flotation (spodumene, graphite), crushing/screening (Ni, Mn), gravity separation. Large mass reduction step.
+"
+data/nmc811/conventional.yaml,chem_processing,Chemical Processing,"Conversion of concentrates to battery-grade chemicals: spodumene roasting + leaching to LiOH·H2O; Ni/Co/Mn to sulfate salts via HPAL, SX-EW, or refining circuits.
+"
+data/nmc811/conventional.yaml,precursor_mfg,Precursor Manufacturing (PCAM),"Co-precipitation of Ni0.8Mn0.1Co0.1(OH)2 from mixed sulfate solution. Controlled pH, temperature, and atmosphere. Washed, filtered, dried.
+"
+data/nmc811/conventional.yaml,cam_mfg,CAM Manufacturing,"Calcination of PCAM blended with LiOH·H2O at 700–900°C in O2 atmosphere. Results in NMC811 oxide powder. Sieving, coating if applicable.
+"
+data/nmc811/conventional.yaml,anode_mfg,Anode Material Manufacturing,"Spheronization and purification of natural graphite flake, or graphitization of petroleum coke (synthetic graphite). Carbon coating optional.
+"
+data/nmc811/conventional.yaml,electrode_mfg,Electrode Manufacturing,"Slurry mixing (CAM/graphite + binder + conductive carbon + solvent), coating on Al/Cu foil, drying (NMP recovery), calendering to target density, slitting.
+"
+data/nmc811/conventional.yaml,cell_mfg,Cell Manufacturing,"Electrode winding/stacking, can/pouch assembly, electrolyte filling, sealing, formation cycling (initial charge/discharge), grading.
+"
+data/nmc811/conventional.yaml,module_assembly,Module Assembly,"Cell-to-module: busbar welding, thermal interface material, module housing. Some formats skip this step (cell-to-pack).
+"
+data/nmc811/conventional.yaml,pack_mfg,Pack Manufacturing,"Module-to-pack: BMS integration, cooling system, enclosure, HV connectors, safety hardware. Final pack testing.
+"
+data/nmc811/conventional.yaml,application,Application,"End-use: EV traction battery, stationary energy storage, or other. Defines the functional unit basis (kWh nameplate capacity).
+"
+data/nmc811/conventional.yaml,eol_recycling,End-of-Life / Recycling,"Battery collection, dismantling, and material recovery. Hydrometallurgical (black mass leach) or direct recycling routes. Recovered materials re-enter supply chain at processing or precursor stage.
+"
+data/nmc811/conventional.yaml,waste,Process Waste / Losses,"Sink for all process losses, scrap, and rejected material. Flows here carry is_loss: true.
+"

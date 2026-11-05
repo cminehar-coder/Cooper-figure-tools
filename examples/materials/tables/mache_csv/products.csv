@@ -1,0 +1,35 @@
+id,company,product,region_built,period,pack_chemistry,pack_kWh_usable,cell_format,cell_makers,notes,route,pack_kwh
+FORD_MACHE_SR,Ford,Mustang Mach-E Standard Range (RWD),MX,2023-2024,LFP,72,prismatic,"json:[{""company"": ""CATL"", ""facility"": ""Changshu (Jiangsu"", ""CN)"": null, ""share_pct_estimate"": 100, ""confidence"": ""confirmed_public_disclosure"", ""region"": ""CN""}]","Ford announced Mach-E LFP shift in May-2023 (Ford press release; Reuters
+coverage). 2024-MY Mach-E SR and select 2023-MY late-build SR units
+shipped with CATL LFP prismatic cells imported from Changshu (China).
+This is the same Changshu LFP line that supplies CATL's prismatic LFP
+to multiple OEMs; Ford-bound volumes ship as packs / modules to
+Cuautitlán for final pack assembly + vehicle build.
+
+Pack kWh: Ford's own US spec sheet for 2024-MY Mach-E SR RWD shows
+72 kWh usable (~70 kWh nominal). Pre-2023 SR was 68 kWh NMC.
+
+IRA 30D status (2024): Mach-E SR LOST eligibility for the $7,500
+credit beginning Jan-2024 because CATL is FEOC-affiliated. This is
+a confirmation of the CATL relationship (only reason for credit loss).
+",data/lfp/solid_state.yaml,70
+FORD_MACHE_ER,Ford,Mustang Mach-E Extended Range (RWD / AWD; incl. GT),MX,2023-2024,NMC,88,pouch,"json:[{""company"": ""LG Energy Solution"", ""facility"": ""Holland MI (US)"", ""share_pct_estimate"": 75, ""confidence"": ""confirmed_public_disclosure"", ""region"": ""US"", ""notes"": ""Primary Mach-E ER cell plant for NA-built packs through 2024 per Ford 2023 Integrated Sustainability Report and Reuters reporting.""}, {""company"": ""LG Energy Solution"", ""facility"": ""Wroclaw (PL)"", ""share_pct_estimate"": 25, ""confidence"": ""estimated_per_facts"", ""region"": ""PL"", ""notes"": ""Partial backstop for MX-bound builds and EU-market Mach-E ER. Lower share inferred from Ford disclosures designating Holland MI as primary.""}]","Ford 2023 Integrated Sustainability Report names LGES as the cell
+supplier for Mach-E (NMC pouch). LGES Holland (Michigan) is the
+historical primary plant for Mach-E ER through 2023; LGES Wroclaw
+(Poland) supplied earlier Mach-E ER builds and continues partial
+backstop for Mexico-bound packs alongside Holland.
+
+Pack architecture: the Mach-E ER pack uses LGES large-format pouch
+cells (the same family used by other Ford EVs prior to BlueOval SK
+Tennessee online date). Cuautitlán performs final pack assembly for
+both SR and ER trims, with cells / modules shipped in.
+
+IRA 30D status (2024): Mach-E ER retained PARTIAL credit ($3,750)
+under 2024 critical minerals + battery components rules; Ford 2024
+IRA filing is the public attestation. Loss of half the credit reflects
+partial FEOC-affiliated upstream content (e.g. some Chinese refining
+steps in LGES Ni / Co supply chain).
+
+NOTE: SK On / BlueOval SK Commerce GA plant is for F-150 Lightning,
+NOT Mach-E. Do not confuse. (Out of scope here.)
+",data/nmc811/conventional.yaml,91

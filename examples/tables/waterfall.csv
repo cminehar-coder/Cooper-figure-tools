@@ -1,0 +1,8 @@
+label,value,kind,note
+2023 unit cost,120.0,base,
+Materials,9.5,step,
+Labour,-2.1,step,
+Energy,1.8,step,
+Scrap rate,-3.4,step,
+Overhead,1.6,step,
+2024 unit cost,127.4,total,"Illustrative numbers, not data. Negative steps lower the cost."

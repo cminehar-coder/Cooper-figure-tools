@@ -50,8 +50,52 @@ class Sankey:
         self._note = None
         self._unit = ""
         self._colors: dict[str, str] = {}
+        self._columns: dict[str, int] = {}
+        self._right = 0.18   # right margin as a fraction of width, for last-column labels
+    @classmethod
+    def from_table(cls, table, sheet=None, profile: str = "paper", title: str | None = None,
+                   unit: str | None = None, **kw) -> "Sankey":
+        """Build a Sankey from a table.
+
+        table: a DataFrame, or a path to a CSV or Excel file (sheet= picks the
+        Excel sheet). Columns: source, target, value, and optionally unit and
+        color_group. Flows with the same color_group share a color.
+        """
+        from .table import read_rows, require
+        rows = read_rows(table, sheet, "sankey")
+        require(rows, ["source", "target", "value"], "sankey")
+        s = cls(profile=profile, **kw)
+        if title:
+            s.title(title)
+        units = list(dict.fromkeys(str(r["unit"]) for r in rows if r.get("unit")))
+        if len(units) > 1:
+            raise ValueError("sankey table mixes units (%s); one chart, one unit"
+                             % ", ".join(units))
+        if unit or units:
+            s.unit(unit or units[0])
+        groups = list(dict.fromkeys(str(r["color_group"]) for r in rows if r.get("color_group")))
+        palette = [S.OKABE_ITO[c] for c in _CYCLE]
+        for i, r in enumerate(rows, start=2):
+            where = "sankey row %d" % i
+            if r.get("source") is None or r.get("target") is None or r.get("value") is None:
+                raise ValueError("%s needs a source, a target and a value" % where)
+            try:
+                v = float(r["value"])
+            except (TypeError, ValueError):
+                raise ValueError("%s: value %r is not a number" % (where, r["value"])) from None
+            col = (palette[groups.index(str(r["color_group"])) % len(palette)]
+                   if r.get("color_group") else None)
+            try:
+                s.flow(str(r["source"]), str(r["target"]), v, color=col)
+            except ValueError as e:
+                raise ValueError("%s: %s" % (where, e)) from None
+        return s
 
     # ---------------- declaration ----------------
+    def column(self, node: str, index: int) -> "Sankey":
+        """Pin a node to column `index` (0 is leftmost) instead of using the
+        longest path. Use it when columns mean something, such as process steps."""
+        self._columns[node] = int(index); return self
     def title(self, text: str) -> "Sankey":
         self._title = _no_bare_dollar(text); return self
 
@@ -101,6 +145,9 @@ class Sankey:
         if seen != len(nodes):
             raise ValueError("the flows contain a cycle; a Sankey needs a "
                              "directed acyclic graph")
+        for n, k in self._columns.items():
+            if n in layer:
+                layer[n] = k
         return nodes, layer
 
     def _order(self, nodes, layer):
@@ -140,7 +187,7 @@ class Sankey:
         plt.rcParams.update(S.rcparams(st))
         fig = plt.figure(figsize=(self.w_mm / MM_PER_IN, self.h_mm / MM_PER_IN),
                          dpi=st.dpi, facecolor=st.bg)
-        left, right = 0.03, 0.18 if ncol > 1 else 0.03
+        left, right = 0.03, self._right if ncol > 1 else 0.03
         top = 0.14 if self._title else 0.04
         bot = 0.12 if self._note else 0.04
         ax = fig.add_axes([left, bot, 1 - left - right, 1 - bot - top])

@@ -1,0 +1,147 @@
+id,tier,downstream,upstream,material,chemistry,period,confidence,share_estimate_pct,quantity_estimate,notes,source_id,shared_with_tesla_rel
+FORD_REL_001,1,"json:{""company"": ""Ford"", ""product_id"": ""FORD_MACHE_SR""}","json:{""company"": ""CATL"", ""facility"": ""Changshu (Jiangsu"", ""CN)"": null}","LFP cells (prismatic, ~70 kWh pack equivalent)",LFP,2023-2024,confirmed_public_disclosure,100,,"CATL Changshu prismatic LFP -> Ford Mach-E SR. Ford May-2023 press
+release (""Ford to bring CATL LFP technology to North America"") names
+CATL as supplier. IRA 30D 2024 list: Mach-E SR not eligible (FEOC
+content) — only CATL among Ford partners triggers FEOC, confirming
+the relationship. CATL ESG 2023 lists Ford among LFP customers.
+Single-source (CATL only) for SR for 2023-2024 period; BYD historic
+mention (2022 reporting) not confirmed for current MYs (see GAP).
+",REF_FORD_SUSTAIN_2023; REF_FORD_IRA_30D_2024; REF_REUTERS_FORD_LFP_2023; REF_CATL_ESG_2023,
+FORD_REL_002,1,"json:{""company"": ""Ford"", ""product_id"": ""FORD_MACHE_ER""}","json:{""company"": ""LG Energy Solution"", ""facility"": ""Holland MI (US)""}","NMC cells (pouch, ~91 kWh pack equivalent)",NMC622 / NMC811,2023-2024,confirmed_public_disclosure,70,,"Ford 2023 Integrated Sustainability Report names LGES as Mach-E NMC
+cell partner; LGES SR 2023 names Ford among major NMC pouch customers.
+LGES Holland (Michigan) is the primary supply node for North American
+Mach-E ER builds. 70/30 share between Holland and Wroclaw is an
+industry estimate (Reuters / Automotive News reporting on Mach-E pack
+logistics). Ford does not publish the geographic split.
+",REF_FORD_SUSTAIN_2023; REF_LGES_SR_2023; REF_FORD_10K_2023,
+FORD_REL_003,1,"json:{""company"": ""Ford"", ""product_id"": ""FORD_MACHE_ER""}","json:{""company"": ""LG Energy Solution"", ""facility"": ""Wroclaw (PL)""}",NMC cells (pouch),NMC622 / NMC811,2023-2024,industry_reporting,30,,"Wroclaw historically supplied earlier (2021-2022) Mach-E ER and continues
+partial supply through 2023-2024 alongside Holland MI for Cuautitlán-
+bound packs. LGES SR 2023 names Wroclaw as a key plant; Ford does not
+publicly attribute Mach-E share by plant. Industry-reported, not Ford
+attested.
+",REF_LGES_SR_2023; REF_REUTERS_FORD_LFP_2023,
+FORD_REL_020,2,"json:{""company"": ""CATL"", ""facility"": ""Changshu (CN)""}","json:{""company"": ""Hunan Yuneng New Energy Battery Material"", ""facility"": ""Hunan + Sichuan (CN)""}",LFP cathode active material,LFP,2023-2024,confirmed_public_disclosure,50,">100,000 t/yr LFP CAM equivalent (industry estimate, all CATL plants)","Hunan Yuneng -> CATL LFP CAM is the same upstream relationship as
+tesla.yaml/REL_020. Ford's Mach-E SR LFP packs draw from the same CATL
+LFP CAM pool. No Ford-specific allocation disclosed; the edge is
+structurally shared between Ford SR, Tesla SR, and many other CATL
+LFP customers.
+",REF_HUNAN_YUNENG_PROSPECTUS; REF_CATL_ESG_2023,REL_020
+FORD_REL_021,2,"json:{""company"": ""CATL"", ""facility"": ""Ningde + Changshu (CN)""}","json:{""company"": ""Brunp Recycling"", ""facility"": ""Foshan / Yichang (CN)""}",recycled LFP CAM + Li/Fe/P feedstock,LFP (recycled stream),2023-2024,confirmed_public_disclosure,,,Brunp is CATL subsidiary; internal recycled-content flow. Same as Tesla.,REF_CATL_ESG_2023,REL_021
+FORD_REL_022,2,"json:{""company"": ""CATL"", ""facility"": ""Changshu (CN)""}","json:{""company"": ""BTR New Material Group"", ""facility"": ""Heilongjiang + Inner Mongolia (CN)""}",graphite anode (natural + synthetic blend for LFP cells),graphite anode,2023-2024,industry_reporting,,,"Ford-specific: CATL Changshu's anode supply is structurally the same
+as Ningde's (BTR primary, Shanshan secondary). Ford's LFP cells use
+anode from this pool; no Ford-specific BTR allocation publicly
+disclosed. Confidence intentionally industry_reporting (vs. confirmed
+for Tesla REL_024) because tesla.yaml's evidence chain
+(REF_CATL_ESG_2023 + REF_BTR_AR_2023) names CATL but not Ford
+directly.
+",REF_CATL_ESG_2023; REF_BTR_AR_2023,REL_024
+FORD_REL_023,2,"json:{""company"": ""CATL"", ""facility"": ""Changshu / Ningde (CN)""}","json:{""company"": ""Tianqi Lithium"", ""facility"": ""Sichuan (CN) + Kwinana (AU)""}","lithium carbonate (Li2CO3, battery-grade) for LFP",Li,2023-2024,confirmed_public_disclosure,,,"Same Tianqi -> CATL Li2CO3 offtake as Tesla REL_026. Mach-E SR LFP
+ultimately ties back to Greenbushes spodumene via Tianqi-Albemarle JV
+(see FORD_REL_060). Carbonate (not hydroxide) is the LFP-relevant
+lithium form.
+",REF_CATL_ESG_2023; REF_TIANQI_AR_2023,REL_026
+FORD_REL_024,2,"json:{""company"": ""CATL"", ""facility"": ""Changshu / Ningde (CN)""}","json:{""company"": ""Ganfeng Lithium"", ""facility"": ""Jiangxi (CN)""}",lithium carbonate / hydroxide,Li,2023-2024,confirmed_public_disclosure,,,Same Ganfeng -> CATL Li offtake as Tesla REL_027.,REF_GANFENG_AR_2023; REF_CATL_ESG_2023,REL_027
+FORD_REL_030,2,"json:{""company"": ""LG Energy Solution"", ""facility"": ""Holland MI (US) + Wroclaw (PL)""}","json:{""company"": ""POSCO Future M"", ""facility"": ""Gwangyang (KR)""}",NMC cathode active material (high-Ni),NMC811 / NMC622,2023-2024,confirmed_public_disclosure,,">40,000 t/yr CAM (industry estimate, all POSCO Future M output to LGES)","POSCO Future M is LGES's primary high-Ni NMC CAM supplier (Gwangyang,
+KR). Ford's 2023 Integrated Sustainability Report and LGES SR both
+identify POSCO Future M as a Ford-relevant cathode partner via LGES.
+Mach-E ER NMC packs draw from this CAM pool.
+",REF_LGES_SR_2023; REF_POSCO_FUTUREM_SR_2023; REF_FORD_SUSTAIN_2023,REL_033
+FORD_REL_031,2,"json:{""company"": ""LG Energy Solution"", ""facility"": ""Holland MI (US) + Wroclaw (PL)""}","json:{""company"": ""L&F"", ""facility"": ""Daegu (KR)""}",NMC cathode active material (high-Ni),NMC811,2023-2024,confirmed_public_disclosure,,,L&F -> LGES NMC; same CAM pool as Tesla. No Ford-specific allocation disclosed.,REF_LGES_SR_2023; REF_LANDF_AR_2023,REL_034
+FORD_REL_032,2,"json:{""company"": ""LG Energy Solution"", ""facility"": ""Holland MI (US) + Wroclaw (PL)""}","json:{""company"": ""EcoPro BM"", ""facility"": ""Pohang (KR)""}",NMC cathode active material,NMC,2023-2024,confirmed_public_disclosure,,,EcoPro BM -> LGES NMC; same CAM pool as Tesla.,REF_LGES_SR_2023; REF_ECOPRO_AR_2023,REL_035
+FORD_REL_033,2,"json:{""company"": ""LG Energy Solution"", ""facility"": ""Holland MI (US) + Wroclaw (PL)""}","json:{""company"": ""BTR New Material Group"", ""facility"": ""Heilongjiang + Inner Mongolia (CN)""}",graphite anode (synthetic + natural),graphite anode,2023-2024,industry_reporting,,,"LGES sources graphite anode from BTR (primary) and Shanshan (secondary)
+— same Chinese-supply structure as CATL. Mach-E ER's anode is BTR-
+sourced but specific Heilongjiang mine attribution is opaque (see
+FORD_GAP_002). Industry_reporting because LGES SR 2023 names BTR
+but not Ford-specific allocation.
+",REF_LGES_SR_2023; REF_BTR_AR_2023,
+FORD_REL_034,2,"json:{""company"": ""LG Energy Solution"", ""facility"": ""Holland MI (US)""}","json:{""company"": ""Vale Canada (Vale Base Metals)"", ""facility"": ""Voisey's Bay (NL) + Sudbury (ON), Long Harbour refinery (CA)""}",nickel sulfate (battery-grade) / Ni intermediates,Ni,"2023-2024 (multi-year offtake announced 2022, deliveries from 2025)",confirmed_public_disclosure,,"~25,000 t Ni / yr starting 2025 (announced 2022)","Vale Canada -> LGES Ni offtake (2022 PR) is the same instrument as
+tesla.yaml/REL_036; the Ford pull-through is via LGES Holland MI
+output to Mach-E ER. Voisey's Bay (Newfoundland & Labrador) is the
+nickel-cobalt mine; Long Harbour (NL) refines to intermediate; battery-
+grade Ni sulfate finishing at Bécancour QC JV plant (Vale + GM, online
+2026). 2023-2024 Mach-E ER Ni largely transitional (mix of Vale +
+other Ni sources via LGES) until Bécancour ramps.
+",REF_VALE_GM_LGES_PR_2022; REF_LGES_SR_2023; REF_VALE_AR_2023,REL_036
+FORD_REL_035,2,"json:{""company"": ""LG Energy Solution"", ""facility"": ""Holland MI (US) + Wroclaw (PL)""}","json:{""company"": ""BHP Nickel West"", ""facility"": ""Kwinana (AU) + Kalgoorlie (AU)""}",nickel sulfate (battery-grade),Ni,2023-2024,confirmed_public_disclosure,,,"BHP Nickel West -> LGES Ni sulfate. BHP AR 2023 names LGES among
+Kwinana Ni sulfate plant offtake counterparties (alongside Tesla via
+Panasonic, Toyota). LGES SR 2023 reciprocally lists BHP. Ford pull-
+through via Mach-E ER NMC. Note: BHP-Panasonic 2022 PR (REF_BHP_
+PANASONIC_PR_2022) is Tesla-specific; for LGES the BHP relationship
+is broader-disclosed in BHP AR rather than a single PR.
+",REF_BHP_AR_2023; REF_LGES_SR_2023,
+FORD_REL_036,2,"json:{""company"": ""LG Energy Solution"", ""facility"": ""Holland MI (US) + Wroclaw (PL)""}","json:{""company"": ""Allkem (now Arcadium Lithium)"", ""facility"": ""Olaroz (AR) + Mt Cattlin (AU)""}",lithium carbonate / hydroxide,Li,2023-2024,confirmed_public_disclosure,,,Allkem (now Arcadium) -> LGES Li; same pool as Tesla.,REF_ALLKEM_AR_2023; REF_LGES_SR_2023,REL_037
+FORD_REL_037,2,"json:{""company"": ""POSCO Future M"", ""facility"": ""Gwangyang (KR)""}","json:{""company"": ""POSCO-Pilbara Lithium Solution (POSCO 82% / Pilbara 18% JV)"", ""facility"": ""Gwangyang LiOH plant (KR)""}","lithium hydroxide (LiOH·H2O, battery-grade)",Li,2024+,confirmed_public_disclosure,,"43,000 t/yr LiOH nameplate (Train 1 + Train 2 combined; Train 1 commissioned 2024)","Same POSCO-Pilbara JV LiOH plant as Tesla REL_063. Vertically
+integrated: Pilbara spodumene -> POSCO-Pilbara JV LiOH -> POSCO
+Future M NMC CAM -> LGES cells -> Ford Mach-E ER. This is the
+clearest fully-traceable Li chain for Mach-E ER.
+",REF_POSCO_FUTUREM_SR_2023; REF_PILBARA_AR_2023,REL_063
+FORD_REL_038,2,"json:{""company"": ""POSCO Future M"", ""facility"": ""Gwangyang (KR)""}","json:{""company"": ""POSCO Holdings (parent)"", ""facility"": ""Pohang (KR) + Indonesia HPAL JV (Halmahera/Morowali via Huayou partnership)""}",nickel sulfate / Ni mixed hydroxide precipitate (MHP),Ni,2023-2024,confirmed_public_disclosure,,,"POSCO Future M's Ni precursor primarily from POSCO Holdings'
+integrated Ni complex. Indonesian HPAL JV with Huayou is partly the
+same intermediate stream as the Tsingshan/Huayou Indonesian Ni that
+reaches CATL (see GAP_001 in tesla.yaml). For Ford Mach-E ER, the
+flow closes at country-level (Indonesia) with specific Sulawesi /
+Halmahera block undisclosed (see FORD_GAP_004).
+",REF_POSCO_FUTUREM_SR_2023,REL_064
+FORD_REL_039,2,"json:{""company"": ""POSCO Future M"", ""facility"": ""Gwangyang (KR)""}","json:{""company"": ""Glencore"", ""facility"": ""KCC (Kolwezi"", ""DRC) + Kokkola (FI) refinery"": null}",cobalt sulfate / cobalt hydroxide,Co,2023-2024,industry_reporting,,,"POSCO Future M sources Co for high-Ni NMC CAM via Glencore (mine to
+Kokkola refinery) plus Chinese tolling refiners. POSCO Future M SR
+2023 mentions DRC Co supply chain due-diligence (OECD-aligned) but
+does not name Glencore exclusively. Glencore AR 2023 names ""Korean
+cathode makers"" as Co customers without per-OEM attribution. For
+Mach-E ER specifically, the Co flow is shared with all NMC OEMs
+sourcing through POSCO Future M (Hyundai, Kia, GM, Ford). Confidence
+industry_reporting reflects the lack of an explicit Glencore-POSCO
+bilateral PR.
+",REF_GLENCORE_AR_2023; REF_POSCO_FUTUREM_SR_2023,
+FORD_REL_060,3,"json:{""company"": ""Hunan Yuneng"", ""facility"": ""Hunan + Sichuan (CN)""}","json:{""company"": ""Lomon Billions Group"", ""facility"": ""Henan + Sichuan (CN)""}",ferrous sulfate (FeSO4) — TiO2 byproduct stream,Fe (LFP precursor),2023-2024,confirmed_public_disclosure,,,"Lomon Billions FeSO4 -> Hunan Yuneng LFP CAM -> CATL Changshu LFP
+cells -> Ford Mach-E SR. Identical to Tesla LFP chain at this tier.
+Note: Fe ultimately traces to ilmenite/sulfate-route Ti feedstock
+rather than a primary iron mine; chain effectively closes at TiO2
+plant, not a mine (same status as tesla.yaml CHAIN_010).
+",REF_LOMON_BILLIONS_AR_2023; REF_HUNAN_YUNENG_PROSPECTUS,REL_060
+FORD_REL_061,3,"json:{""company"": ""Hunan Yuneng"", ""facility"": ""Hunan + Sichuan (CN)""}","json:{""company"": ""Yunnan Yuntianhua Co Ltd"", ""facility"": ""Yunnan (CN)""}",phosphoric acid (H3PO4) — phosphate rock derived,P (LFP precursor),2023-2024,confirmed_public_disclosure,,,"Yuntianhua Yunnan phosphate rock -> H3PO4 -> Hunan Yuneng -> CATL
+Changshu -> Mach-E SR. Yunnan Haikou + Anning phosphate complexes
+are the mine source. Identical to Tesla chain.
+",REF_YUNTIANHUA_AR_2023; REF_HUNAN_YUNENG_PROSPECTUS,REL_061
+FORD_REL_062,3,"json:{""company"": ""Tianqi Lithium"", ""facility"": ""Kwinana refinery (WA, AU) + Sichuan refinery (CN)""}","json:{""company"": ""Talison Lithium (Tianqi 51% / Albemarle 49% JV)"", ""facility"": ""Greenbushes mine (WA, AU)""}",spodumene concentrate (SC6) -> Li2CO3 (LFP-grade),Li,2023-2024,confirmed_public_disclosure,,,"Greenbushes (WA, AU) is the world's largest hard-rock Li mine.
+Tianqi takes 51% of SC6 output; the Tianqi share routes through
+Kwinana refinery (AU) + Sichuan refinery (CN) to Li2CO3 -> Hunan
+Yuneng LFP CAM -> CATL Changshu -> Ford Mach-E SR. End-to-end mine-
+to-vehicle chain for the lithium in Mach-E SR.
+",REF_TIANQI_AR_2023; REF_ALBEMARLE_10K_2023,REL_076
+FORD_REL_070,3,"json:{""company"": ""POSCO-Pilbara Lithium Solution JV"", ""facility"": ""Gwangyang LiOH plant (KR)""}","json:{""company"": ""Pilbara Minerals"", ""facility"": ""Pilgangoora mine (WA, AU)""}",spodumene concentrate (SC6),Li (upstream),2023-2024,confirmed_public_disclosure,,">315,000 t/yr SC6 dedicated to JV LiOH plant (Pilbara annual disclosure)","Pilbara Pilgangoora -> POSCO-Pilbara JV LiOH (Gwangyang) is a Ford-
+relevant tier-3 chain that is structurally the same as Tesla's CHAIN
+involving Pilbara, but here the captive-LiOH route via the POSCO
+JV flows specifically into POSCO Future M NMC CAM and then LGES
+pouch cells for Mach-E ER. Ford's 2023 Integrated Sustainability
+Report names ""Australian spodumene via POSCO"" among Mach-E ER raw
+materials. Mine attribution is unambiguous: Pilgangoora.
+",REF_PILBARA_AR_2023; REF_POSCO_FUTUREM_SR_2023,
+FORD_REL_071,3,"json:{""company"": ""Vale Canada (Vale Base Metals)"", ""facility"": ""Long Harbour (NL) refinery""}","json:{""company"": ""Vale Canada"", ""facility"": ""Voisey's Bay mine (NL) — Ovoid + Reid Brook + Eastern Deeps""}",nickel-cobalt sulfide concentrate -> Ni intermediates,Ni / Co,2023-2024,confirmed_public_disclosure,,,"Voisey's Bay (Newfoundland & Labrador) is the named Ni-Co mine for
+LGES's Vale offtake. Ford pull-through via Mach-E ER. Ovoid (open
+pit, depleting) + Reid Brook + Eastern Deeps (underground; ramping
+2024+) are the operational pits. Concentrate ships to Long Harbour
+hydromet refinery (NL) -> Ni metal/intermediates -> Bécancour Ni
+sulfate plant (QC, GM JV, online 2026) for full battery-grade
+finishing. 2023-2024 Mach-E ER Ni partly via existing Sudbury
+(Vale) Ni metal stream until Bécancour ramps.
+",REF_VALE_AR_2023; REF_VALE_GM_LGES_PR_2022,REL_074
+FORD_REL_072,3,"json:{""company"": ""Vale Canada (Vale Base Metals)"", ""facility"": ""Sudbury (ON) refinery + smelter""}","json:{""company"": ""Vale Canada"", ""facility"": ""Sudbury Basin mines (ON) — Coleman, Copper Cliff, Garson, Totten, Creighton""}",nickel-copper-PGM sulfide concentrate -> Ni intermediates,Ni,2023-2024,confirmed_public_disclosure,,,"Sudbury Basin (ON) Ni-Cu sulfide mines feed the Sudbury smelter +
+Copper Cliff Ni refinery. Sudbury Ni metal output is the legacy
+stream LGES draws on for North America 2023-2024 deliveries (before
+Bécancour battery-grade plant ramps). Ford pull-through via Mach-E
+ER NMC.
+",REF_VALE_AR_2023,REL_074
+FORD_REL_073,3,"json:{""company"": ""BHP Nickel West"", ""facility"": ""Kwinana refinery + Kwinana Ni sulfate plant (WA, AU)""}","json:{""company"": ""BHP Nickel West"", ""facility"": ""Mt Keith + Leinster + Cliffs Ni sulfide mines (WA, AU)""}",nickel sulfide concentrate -> matte -> Ni sulfate,Ni,2023-2024,confirmed_public_disclosure,,,"Same BHP Nickel West vertical as tesla.yaml/REL_073. For Ford Mach-E
+ER, the offtake counterparty is LGES rather than Panasonic, but the
+mine-to-Ni-sulfate flow is structurally identical (Mt Keith /
+Leinster sulfide -> Kalgoorlie smelter -> Kwinana refinery -> Kwinana
+Ni sulfate plant, commissioned 2024).
+",REF_BHP_AR_2023,REL_073
+FORD_REL_074,3,"json:{""company"": ""Glencore"", ""facility"": ""Kokkola (FI) Co refinery""}","json:{""company"": ""Glencore KCC (Kamoto Copper Company)"", ""facility"": ""Kolwezi (DRC) — Kamoto + KOV open pits""}",cobalt hydroxide (mine output) -> Co metal / sulfate,Co,2023-2024,confirmed_public_disclosure,,,"KCC -> Kokkola -> Co metal/sulfate. For Ford Mach-E ER, Glencore Co
+reaches LGES cells via POSCO Future M / L&F / EcoPro BM CAM. The
+Glencore-CATL bilateral offtake (Tesla REL_028) does NOT apply
+directly to Ford; the LGES-bound DRC Co flow is multi-counterparty
+and not a single named Ford-Glencore PR. Confidence is confirmed at
+mine-to-refinery step (Glencore-internal) but the LGES offtake is
+industry-disclosed in aggregate (FORD_REL_039 above).
+",REF_GLENCORE_AR_2023,REL_070

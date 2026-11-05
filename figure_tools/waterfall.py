@@ -65,6 +65,55 @@ class Waterfall:
         self._rows = []          # (kind, label, value)  kind in base|step|total
 
     # ---------------- declaration ----------------
+    @classmethod
+    def from_table(cls, table, sheet=None, profile: str = "deck", title: str | None = None,
+                   ylabel: str | None = None, **kw) -> "Waterfall":
+        """Build a waterfall from a table.
+
+        table: a DataFrame, or a path to a CSV or Excel file (sheet= picks the
+        Excel sheet). Columns: label, value, kind, and optionally note.
+        kind is base (first row), step, or total. On a total row, value is the
+        total you measured independently; the steps must add up to it.
+        """
+        from .table import read_rows, require
+        rows = read_rows(table, sheet, "waterfall")
+        require(rows, ["label", "value", "kind"], "waterfall")
+        w = cls(profile=profile, **kw)
+        if title:
+            w.title(title)
+        if ylabel:
+            w.ylabel(ylabel)
+        notes = []
+        for i, r in enumerate(rows, start=2):       # row 1 is the header
+            kind = str(r.get("kind") or "").strip().lower()
+            where = "waterfall row %d (%s)" % (i, r.get("label"))
+            if r.get("label") is None or r.get("value") is None:
+                raise ValueError("%s needs a label and a value" % where)
+            if kind not in ("base", "step", "total"):
+                raise ValueError("%s: kind is %r; use base, step or total" % (where, r.get("kind")))
+            try:
+                value = float(r["value"])
+            except (TypeError, ValueError):
+                raise ValueError("%s: value %r is not a number" % (where, r["value"])) from None
+            label = str(r["label"])
+            try:
+                if kind == "base":
+                    w.baseline(label, value)
+                elif kind == "step":
+                    w.step(label, value)
+                else:
+                    w.total(label, expect=value)
+            except ValueError as e:
+                raise ValueError("%s: %s" % (where, e)) from None
+            if r.get("note"):
+                notes.append(str(r["note"]))
+        if not any(k == "total" for k, _, _ in w._rows):
+            raise ValueError("waterfall table has no total row; add one with kind = total "
+                             "and the independently measured total as its value")
+        if notes:
+            w.note(" ".join(dict.fromkeys(notes)))
+        return w
+
     def title(self, text: str) -> "Waterfall":
         self._title = self._check_dollars(text, "title()"); return self
 

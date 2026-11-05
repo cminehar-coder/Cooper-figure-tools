@@ -14,10 +14,11 @@ dependencies = ["matplotlib>=3.7", "pyyaml>=6.0", "plotly>=5.18"]
 keywords = ["sankey", "waterfall", "figures", "matplotlib", "material flow"]
 
 [project.optional-dependencies]
-test = ["pytest>=7"]
+tables = ["pandas>=2.0", "openpyxl>=3.1"]
+test = ["pytest>=7", "pandas>=2.0", "openpyxl>=3.1"]
 
 [project.scripts]
-figure-tools-materialflow = "figure_tools.materialflow.render_sankey:main"
+figure-tools-materialflow = "figure_tools.materialflow.cli:main"
 
 [tool.setuptools.packages.find]
 include = ["figure_tools*"]

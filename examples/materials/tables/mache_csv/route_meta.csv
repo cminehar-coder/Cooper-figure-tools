@@ -1,0 +1,24 @@
+route,key,value
+data/lfp/solid_state.yaml,chemistry,LFP
+data/lfp/solid_state.yaml,route,solid_state
+data/lfp/solid_state.yaml,route_description,"Conventional solid-state LFP synthesis: FePO4 precursor + Li2CO3 blended and calcined at ~700°C under inert atmosphere. Results in micron-scale LFP particles (d50 ~2–5 µm) with moderate electrode compaction (~2.2–2.4 g/cc). Carbon coating applied via carbon source in calcination. Dominant route outside China.
+"
+data/lfp/solid_state.yaml,functional_unit,kWh
+data/lfp/solid_state.yaml,year,2023
+data/lfp/solid_state.yaml,region,global
+data/lfp/solid_state.yaml,status,populated
+data/lfp/solid_state.yaml,target_specs,"json:{""cell_format"": ""prismatic"", ""nominal_voltage_V"": 3.2, ""cell_energy_density_Wh_L"": 450, ""cell_energy_density_Wh_kg"": 180, ""cathode_loading_mg_cm2"": 18.0, ""cathode_density_g_cc"": 2.3, ""anode_loading_mg_cm2"": 11.0, ""n_p_ratio"": 1.1, ""electrolyte_amount_g_Ah"": 2.8, ""notes"": ""Specs representative of standard LFP prismatic cells (ca. 2022–2024). Lower energy density than NMC but longer cycle life and better safety. Source: BatPaC v5 (REF_PNNL_BatPaC).\n""}"
+data/lfp/solid_state.yaml,allocation_convention,"json:{""method"": ""economic"", ""rationale"": ""Adopted 2026-04-30 as project default. Matches GREET 2023 and aligns with ISO 14044 / PEF guidance for handling multifunctional processes.\n"", ""flows_affected"": [""F010"", ""F011""], ""alternative_methods_in_uncertainty"": {""low"": ""mass_allocation"", ""high"": ""unallocated_cutoff""}, ""notes"": ""LFP iron source is dominantly TiO2-byproduct FeSO4 in commercial Chinese plants. Economic allocation gives a small Fe burden because TiO2 is the main product. F010/F011 values currently follow this convention; see flow notes for per-flow allocation arithmetic.\n""}"
+data/lfp/solid_state.yaml,calculation_notes,"All kg/kWh values derived from first-principles mass balance anchored to cell specs above. Cathode active material (LFP): loading 18.0 mg/cm², 92% active fraction → 16.56 mg/cm² LFP; practical capacity 155 mAh/g at 3.20 V → 8.21 mWh/cm²; electrode area for 1 kWh = 121,800 cm²; LFP mass = 2.017 kg/kWh. Cross-checked against GREET 2023 (1.9–2.2 kg/kWh), Pell et al. 2021 (2.0 kg/kWh). FePO4 + ½Li2CO3 → LiFePO4 + ½CO2 (solid-state calcination stoichiometry). MW: LFP=157.76, FePO4=150.82, Li2CO3=73.89, H3PO4=97.99.
+"
+data/nmc811/conventional.yaml,chemistry,NMC811
+data/nmc811/conventional.yaml,route,conventional
+data/nmc811/conventional.yaml,route_description,"Standard commercial NMC811 route: hard-rock lithium (spodumene) converted to LiOH·H2O; Ni/Co/Mn sulfate salts co-precipitated into hydroxide precursor (PCAM); calcined with LiOH to form NMC811 CAM; polycrystalline morphology; electrode density ~3.3–3.5 g/cc.
+"
+data/nmc811/conventional.yaml,functional_unit,kWh
+data/nmc811/conventional.yaml,year,2023
+data/nmc811/conventional.yaml,region,global
+data/nmc811/conventional.yaml,status,partially_populated
+data/nmc811/conventional.yaml,target_specs,"json:{""cell_format"": ""cylindrical"", ""nominal_voltage_V"": 3.67, ""cell_energy_density_Wh_L"": 750, ""cell_energy_density_Wh_kg"": 280, ""cathode_loading_mg_cm2"": 20.0, ""cathode_density_g_cc"": 3.4, ""anode_loading_mg_cm2"": 11.5, ""n_p_ratio"": 1.1, ""electrolyte_amount_g_Ah"": 2.5, ""notes"": ""Specs representative of high-volume 21700 NMC811 cells (ca. 2022–2024). Source: BatPaC v5 (REF_PNNL_BatPaC), Lain et al. 2019 (REF_LAIN_2019).\n""}"
+data/nmc811/conventional.yaml,allocation_convention,"json:{""method"": ""economic"", ""rationale"": ""Adopted 2026-04-30 as project default. Matches GREET 2023 and aligns with ISO 14044 / PEF guidance for handling multifunctional processes. Economic allocation distributes upstream burden by revenue share at the point of separation (2022–2023 prices used as reference).\n"", ""flows_affected"": [""F020"", ""F022""], ""alternative_methods_in_uncertainty"": {""low"": ""mass_allocation"", ""high"": ""unallocated_cutoff""}, ""notes"": ""For each affected flow, the central value reflects economic allocation; uncertainty.low and uncertainty.high preserve mass-allocation and unallocated bounds respectively, so users can recompute under alternative conventions.\n""}"
+data/nmc811/conventional.yaml,mass_balance_anchors,"json:{""cam_mw_g_mol"": 97.28, ""pcam_mw_g_mol"": 94.36, ""lioh_h2o_mw_g_mol"": 41.964, ""practical_capacity_mAh_g"": 190, ""cam_kg_per_kWh"": 1.435, ""li_fraction_cam"": 0.07134, ""ni_fraction_cam"": 0.48258, ""co_fraction_cam"": 0.06057, ""mn_fraction_cam"": 0.05647}"
