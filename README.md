@@ -1,14 +1,15 @@
 # figure-tools
 
-Waterfall and Sankey figures from plain Python data. You give it numbers; it
-handles layout, colour, type and export (PDF, SVG, PNG, and an interactive HTML
-Sankey). Two styles: `paper` (hairlines, 8 pt type floor, colour-blind-safe
-palette) and `deck` (big type, heavy strokes, for slides).
+figure-tools draws waterfall and Sankey figures from plain Python data. It
+handles layout, color, type and export to PDF, SVG and PNG, plus interactive
+HTML for Sankeys. The `paper` style uses hairlines, an 8 pt type floor and a
+colorblind-safe palette. The `deck` style uses big type and heavy strokes for
+slides.
 
 ![waterfall](docs/img/waterfall.png)
 ![sankey](docs/img/sankey.png)
 
-## 60-second quickstart
+## Quickstart
 
 Python 3.10 or newer.
 
@@ -51,27 +52,27 @@ s.save("out/grant")                       # PDF, SVG, PNG
 s.save_html("out/grant.html")             # interactive, hover for values
 ```
 
-Columns come from the longest path through your flows. Cycles and non-positive
-flows raise an error.
+The longest path through your flows sets the columns. Cycles and flows of zero
+or less raise an error.
 
-## What it checks for you
+## Checks
 
-- **Waterfall totals.** `total(expect=...)` raises if the steps do not walk to the
-  total you measured independently, so a dropped step cannot slip through.
-- **Printed numbers add up.** Decimals are chosen so the labels on the figure sum
-  to the printed total and the smallest step is still readable.
-- **Dollar signs.** matplotlib treats `$...$` as maths and silently italicises the
-  text in between. A bare `$` in a title or label raises an error; write `\$`.
-- **Fonts.** PDFs embed real TrueType text (not Type 3) and SVG keeps live text,
-  so a copy-editor can fix a typo without redrawing. A missing glyph is an error.
+- `total(expect=...)` raises an error if the steps don't add up to a total you
+  got some other way. That catches a dropped step.
+- Decimals are picked so the printed labels sum to the printed total and the
+  smallest step stays readable.
+- matplotlib reads `$...$` as math and italicizes the text in between. A bare
+  `$` in a title or label raises an error. Write `\$` instead.
+- PDFs embed TrueType text (not Type 3) and SVGs keep live text, so a copy
+  editor can fix a typo without redrawing. A missing glyph raises an error.
 
-## Material-flow Sankey (interactive, with bibliography)
+## Material-flow Sankey
 
-`figure_tools.materialflow` is a more specialised renderer. It reads a
-supply-chain YAML, a materials registry and a reference library, then writes an
-interactive D3 Sankey of mass flows by process step and country, plus a
-bibliography (`.md` and `.csv`) of every source cited. The shipped example is the
-Ford Mustang Mach-E battery supply chain, built from public sources only.
+`figure_tools.materialflow` draws supply chains. It reads a supply-chain YAML,
+a materials registry and a reference library. It writes an interactive D3
+Sankey of mass flows by process step and country, plus a bibliography (`.md`
+and `.csv`) of every source it cites. The example is the Ford Mustang Mach-E
+battery supply chain, from public sources only.
 
 ```bash
 python examples/materials/run_mache.py
@@ -81,20 +82,18 @@ python examples/materials/run_mache.py
 
 ![Mach-E supply chain](docs/img/mache_d3.png)
 
-The input format is documented in `examples/materials/schema/schema_definition.yaml`.
-The project folder must contain `schema/` and `sources/` next to the data
-(see `examples/materials/`). The HTML loads d3 from a CDN, so opening it needs a
-network connection.
+The input format is in `examples/materials/schema/schema_definition.yaml`.
+Keep `schema/` and `sources/` next to the data, as in `examples/materials/`.
+The HTML loads d3 from a CDN, so it needs a network connection.
 
 ## Limits
 
-- The data in `examples/` is illustrative or, for Mach-E, taken from the public
-  sources listed in its bibliography. Numbers are estimates; check them against
-  the cited sources before reuse.
-- Fonts are not bundled. The styles ask for Arial, Helvetica or Liberation Sans
-  and fall back to DejaVu Sans, which ships with matplotlib (free licence).
-- The static Sankey puts labels over the flows with a white halo; very dense
-  graphs (dozens of nodes per column) are better served by the HTML version.
+- The example numbers are made up, except Mach-E, which uses the public sources
+  in its bibliography. Check those estimates against the sources before reuse.
+- Fonts aren't bundled. The styles ask for Arial, Helvetica or Liberation Sans
+  and fall back to DejaVu Sans, which ships with matplotlib (free license).
+- For dense graphs (dozens of nodes per column), use the HTML Sankey. The static
+  one draws labels over the flows with a white halo.
 
 ## Tests
 
@@ -102,13 +101,13 @@ network connection.
 uv venv && uv pip install -e ".[test]" && .venv/bin/pytest
 ```
 
-Every example is rendered from scratch and its outputs are checked.
+This renders every example from scratch and checks the outputs.
 
 ## Cite
 
 GitHub's "Cite this repository" button reads `CITATION.cff`. Once a release is
-archived on Zenodo, cite the DOI it is given.
+archived on Zenodo, cite its DOI.
 
-## Licence
+## License
 
 MIT, copyright Cooper Minehart. See `LICENSE`.
